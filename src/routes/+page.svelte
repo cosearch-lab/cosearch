@@ -247,18 +247,40 @@
 						<h5 class="font-bold text-gray-600">bbchallenge</h5>
 						<div class="flex space-x-2 items-center">
 							<i class="fas fa-globe"></i>
+							<i class="fas fa-book"></i>
 							<img src="/icon_clyde_black_RGB.png" alt="Discord logo" class="w-5" />
 							<img src="/github-mark.png" alt="GitHub logo" class="w-5" />
 						</div>
 					</div>
-					<div class="p-5 flex space-x-5 items-center">
-						<img
-							src="/bbchallenge_logo_no_text.png"
-							class="w-20 rounded-md"
-							alt="bbchallenge logo"
-						/>
+					<div class="p-3 flex flex-col items-start space-y-2">
 						<div class="text-sm italic text-gray-600">
 							Deciding the undecidable, one Turing machine at a time.
+						</div>
+						<div class="flex w-full space-x-4">
+							<img
+								src="/bbchallenge_logo_no_text.png"
+								class="w-20 rounded-md"
+								alt="bbchallenge logo"
+							/>
+							<div class="flex flex-col space-y-1">
+								<div class="flex w-full items-start space-x-3">
+									<div class="flex items-center space-x-1">
+										<span class="text-sm">23</span> <i class="fas fa-user text-sm"></i>
+									</div>
+									<div class="flex items-center space-x-1">
+										<span class="text-sm">77</span> <i class="fas fa-flag text-sm"></i>
+									</div>
+									<div class="flex items-center space-x-1">
+										<span class="text-sm">4</span> <i class="fas fa-bullseye text-sm"></i>
+									</div>
+								</div>
+								<div class="text-sm italic">
+									43k views &middot <span class="flex- inline-flex items-center space-x-1">
+										<span class="text-sm">30</span> <i class="fas fa-star text-sm"></i>
+									</span>
+								</div>
+								<div class="text-sm italic">Last active: today</div>
+							</div>
 						</div>
 					</div>
 				</div>
