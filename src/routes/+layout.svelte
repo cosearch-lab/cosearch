@@ -5,7 +5,7 @@
 <div class="w-[85%] mx-auto mt-5 text-md flex flex-col space-y-5">
 	<div class="flex flex-col">
 		<div class="text-xl">
-			<strong>CoSearch</strong>
+			<strong><a href="/" class="text-black hover:text-black">CoSearch</a></strong>
 		</div>
 		<div class="text-gray-700 text-sm">Massively Collaborative Research</div>
 	</div>

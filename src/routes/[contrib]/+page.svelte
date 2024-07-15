@@ -66,8 +66,7 @@
 			<span>Dependencies:</span>
 			<div>
 				{#each contrib.dependencies as dependency, index}
-					<span class="text-blue-500">{dependency}</span
-					>{#if index !== contrib.dependencies.length - 1}
+					<a>{dependency}</a>{#if index !== contrib.dependencies.length - 1}
 						<span>, </span>
 					{/if}
 				{/each}
