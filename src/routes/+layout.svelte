@@ -5,7 +5,7 @@
 <div class="w-[85%] mx-auto mt-5 text-md flex flex-col space-y-5">
 	<div class="flex flex-col">
 		<div class="text-xl">
-			<strong><a href="/" class="text-black hover:text-black">CoSearch</a></strong>
+			<strong><a href="/">CoSearch</a></strong>
 		</div>
 		<div class="text-gray-700 text-sm">Massively Collaborative Research</div>
 	</div>
@@ -17,7 +17,7 @@
 			</div>
 			<div>
 				<div><strong>The Busy Beaver Challenge</strong></div>
-				<div><a href="https://bbchallenge.org">bbchallenge.org</a></div>
+				<div><a href="https://bbchallenge.org" class="l">bbchallenge.org</a></div>
 			</div>
 		</div>
 		<slot />

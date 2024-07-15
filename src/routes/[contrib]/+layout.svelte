@@ -3,6 +3,9 @@
 	import type { Tag, Contribution } from '$lib/index';
 	import { tags } from '$lib/index';
 
+	let path;
+	$: path = $page.url.pathname;
+
 	let contrib_id = $page.params.contrib;
 
 	let contrib: Contribution = {
@@ -55,7 +58,7 @@
 	<div class="text-md flex space-x-1">
 		<span>{contrib.date}</span> <span>&middot;</span>
 		{#each contrib.authors as author, index}
-			<a href="/">{author}</a>
+			<a href="/" class="l">{author}</a>
 			{#if index !== contrib.authors.length - 1}
 				<span>, </span>
 			{/if}
@@ -67,7 +70,7 @@
 			<span>Dependencies:</span>
 			<div>
 				{#each contrib.dependencies as dependency, index}
-					<a>{dependency}</a>{#if index !== contrib.dependencies.length - 1}
+					<a href="/" class="l">{dependency}</a>{#if index !== contrib.dependencies.length - 1}
 						<span>, </span>
 					{/if}
 				{/each}
@@ -105,18 +108,24 @@
 				<!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700" -->
 				<a
 					href={`/${contrib_id}`}
-					class="flex whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium active"
+					class="flex whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium"
+					class:active={path === `/${contrib_id}`}
+					class:not-active={!(path === `/${contrib_id}`)}
 					aria-current="page"
 				>
 					Details
 				</a>
 				<a
 					href={`/${contrib_id}/reviews`}
-					class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium not-active"
+					class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium"
+					class:active={path === `/${contrib_id}/reviews`}
+					class:not-active={!(path === `/${contrib_id}/reviews`)}
 				>
 					Reviews
 					<span
-						class="ml-3 hidden rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-medium text-gray-800 md:inline-block"
+						class="ml-2 rounded-full px-2.5 py-0.5 text-xs font-medium"
+						class:active={path === `/${contrib_id}/reviews`}
+						class:not-active={!(path === `/${contrib_id}/reviews`)}
 						>{contrib.number_of_reviews}</span
 					>
 				</a>
@@ -134,5 +143,13 @@
 
 	a.not-active {
 		@apply text-gray-500 hover:border-gray-200 hover:text-gray-700;
+	}
+
+	span.active {
+		@apply text-indigo-600 bg-indigo-200;
+	}
+
+	span.not-active {
+		@apply text-gray-800 bg-gray-300;
 	}
 </style>

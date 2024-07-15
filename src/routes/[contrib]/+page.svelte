@@ -5,7 +5,9 @@
 		<tr>
 			<td class="border border-slate-300 p-1">GitHub</td>
 			<td class="border border-slate-300 p-1">
-				<a href="https://github.com/ccz181078/Coq-BB5">https://github.com/ccz181078/Coq-BB5</a>
+				<a href="https://github.com/ccz181078/Coq-BB5" class="l"
+					>https://github.com/ccz181078/Coq-BB5</a
+				>
 			</td>
 		</tr>
 	</tbody>

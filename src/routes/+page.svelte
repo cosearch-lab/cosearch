@@ -125,7 +125,7 @@
 					<div class="text-sm flex space-x-1">
 						<span>{contrib.date}</span> <span>&middot;</span>
 						{#each contrib.authors as author, index}
-							<a href="">{author}</a>
+							<a href="" class="l">{author}</a>
 							{#if index !== contrib.authors.length - 1}
 								<span>, </span>
 							{/if}
@@ -136,7 +136,8 @@
 							<span>Dependencies:</span>
 							<div>
 								{#each contrib.dependencies as dependency, index}
-									<a href="/">{dependency}</a>{#if index !== contrib.dependencies.length - 1}
+									<a href="/" class="l">{dependency}</a
+									>{#if index !== contrib.dependencies.length - 1}
 										<span>, </span>
 									{/if}
 								{/each}

@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-a {
+a.l {
     @apply text-blue-500 cursor-pointer hover:text-blue-700;
 }
