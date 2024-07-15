@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 a {
-    @apply text-blue-500 cursor-pointer;
+    @apply text-blue-500 cursor-pointer hover:text-blue-700;
 }
