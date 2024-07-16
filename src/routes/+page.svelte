@@ -4,7 +4,7 @@
 
 	let contribs: Contribution[] = [
 		{
-			id: '2zr5ys29xxoexdlviulo',
+			id: '2zr5ys29',
 			title: '1RB2LA0LA_2LC---2RA_0RA2RC1LC does not halt',
 			date: 'Jul 13',
 			authors: ['Jason Yuen'],
@@ -16,7 +16,7 @@
 			number_of_stars: 1
 		},
 		{
-			id: '5xvr42ixeifnp0fgmtpa',
+			id: '5xvr42ix',
 			title: 'Coq-BB5',
 			date: 'Apr 24',
 			authors: ['mxdys'],
@@ -28,7 +28,7 @@
 			number_of_stars: 150
 		},
 		{
-			id: 'lxbplez6658ytyjss357',
+			id: 'lxbplez6',
 			title: 'Coq formalisation of Cyclers',
 			date: 'Jul 2023',
 			authors: ['mei'],
@@ -41,7 +41,7 @@
 			links: ['https://discuss.bbchallenge.org/t/decider-cyclers/33']
 		},
 		{
-			id: '1jtod12g03dkz8zq9on7',
+			id: '1jtod12g',
 			title: 'Dafny formalisation of Cyclers',
 			date: 'Mar 2022',
 			authors: ['Nathan Fenner'],
@@ -54,7 +54,7 @@
 			links: ['https://discuss.bbchallenge.org/t/decider-cyclers/33']
 		},
 		{
-			id: 'fc4jc5fmaa1sbqz9w8y1',
+			id: 'fc4jc5fm',
 			title: 'Cyclers',
 			date: 'Sep 2022',
 			authors: ['Tristan Stérin'],
@@ -67,7 +67,7 @@
 			links: ['https://discuss.bbchallenge.org/t/decider-cyclers/33']
 		},
 		{
-			id: 'jb95hfvarvt13dst063n',
+			id: 'jb95hfvar',
 			title: 'bbchallenge seed database',
 			date: 'Dec 2021',
 			authors: ['Tristan Stérin'],
@@ -125,7 +125,7 @@
 					<div class="text-sm flex space-x-1">
 						<span>{contrib.date}</span> <span>&middot;</span>
 						{#each contrib.authors as author, index}
-							<a href="" class="l">{author}</a>
+							<a href="/mxdys" class="l">{author}</a>
 							{#if index !== contrib.authors.length - 1}
 								<span>, </span>
 							{/if}
@@ -172,14 +172,14 @@
 						</div>
 					</div>
 					<div class="mt-2 flex space-x-2">
-						<a href={`/${contrib.id}`}>
+						<a href={`/c/${contrib.id}`}>
 							<button
 								type="button"
 								class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
 								>View</button
 							>
 						</a>
-						<a href={`/${contrib.id}/reviews`}>
+						<a href={`/c/${contrib.id}/reviews`}>
 							<button
 								type="button"
 								class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
