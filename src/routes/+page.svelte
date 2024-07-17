@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Tag, Contribution } from '$lib/index';
-	import ContributionCard from '$lib/components/contribution.svelte';
+	import ContributionSummary from '$lib/components/contribution-summary.svelte';
 	import { mockContribs, tags } from '$lib/index';
 </script>
 
@@ -30,8 +30,18 @@
 	</ol>
 </nav>
 
+<div>
+	<button
+		type="button"
+		class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+	>
+		<i class="fa-solid fa-circle-plus mr-1"></i>
+		Add contribution
+	</button>
+</div>
+
 <div class="flex flex-col space-y-5 ml-0 pb-20">
 	{#each mockContribs as contrib}
-		<ContributionCard {contrib} />
+		<ContributionSummary {contrib} />
 	{/each}
 </div>

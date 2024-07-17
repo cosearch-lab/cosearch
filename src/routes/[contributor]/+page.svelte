@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import ContributionCard from '$lib/components/contribution.svelte';
+	import ContributionSummary from '$lib/components/contribution-summary.svelte';
 	import { mockContribs } from '$lib/index';
 
 	let contributor = $page.params.contributor;
@@ -75,5 +75,5 @@
 </div>
 
 <div class="flex flex-col space-y-5 ml-0 pb-20">
-	<ContributionCard contrib={mockContribs[1]} />
+	<ContributionSummary contrib={mockContribs[1]} />
 </div>
