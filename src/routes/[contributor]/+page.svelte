@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import ContributionCard from '$lib/components/contribution.svelte';
+	import { mockContribs } from '$lib/index';
 
 	let contributor = $page.params.contributor;
 </script>
@@ -8,7 +10,7 @@
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/" class="text-gray-400 hover:text-gray-500"> Contributors </a>
+				<a href="/contributors" class="text-gray-400 hover:text-gray-500"> Contributors (32) </a>
 			</div>
 		</li>
 		<li>
@@ -68,6 +70,10 @@
 <div class="flex items-center">
 	<div class="text-lg font-bold">Contributions</div>
 	<span class="ml-2 rounded-full px-2.5 py-0.5 text-xs font-medium text-gray-800 bg-gray-300"
-		>2</span
+		>1</span
 	>
+</div>
+
+<div class="flex flex-col space-y-5 ml-0 pb-20">
+	<ContributionCard contrib={mockContribs[1]} />
 </div>

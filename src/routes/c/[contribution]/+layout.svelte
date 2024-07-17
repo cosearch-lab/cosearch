@@ -26,7 +26,7 @@
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/" class="text-gray-400 hover:text-gray-500"> Contributions </a>
+				<a href="/" class="text-gray-400 hover:text-gray-500"> Contributions (200) </a>
 			</div>
 		</li>
 		<li>

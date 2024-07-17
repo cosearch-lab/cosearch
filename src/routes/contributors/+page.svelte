@@ -1,14 +1,12 @@
 <script lang="ts">
-	import type { Tag, Contribution } from '$lib/index';
-	import ContributionCard from '$lib/components/contribution.svelte';
-	import { mockContribs, tags } from '$lib/index';
+	import { mockContributors } from '$lib/index';
 </script>
 
 <nav class="flex" aria-label="Breadcrumb">
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/" class="text-gray-400 hover:text-gray-500"> Contributions (200) </a>
+				<a href="/contributors" class="text-gray-400 hover:text-gray-500"> Contributors (32) </a>
 			</div>
 		</li>
 		<li>
@@ -30,8 +28,12 @@
 	</ol>
 </nav>
 
-<div class="flex flex-col space-y-5 ml-0 pb-20">
-	{#each mockContribs as contrib}
-		<ContributionCard {contrib} />
+<ul class="list-disc ml-4 marker:text-gray-500">
+	{#each mockContributors as contributor}
+		<li>
+			<div class="flex items-center space-x-1">
+				<a href={`/${contributor.local_handle}`} class="l">{contributor.display_name}</a>
+			</div>
+		</li>
 	{/each}
-</div>
+</ul>
