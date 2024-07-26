@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Contribution } from '$lib/index';
+	import { goto } from '$app/navigation';
 	export let contrib: Contribution;
 </script>
 
@@ -59,20 +60,19 @@
 				</div>
 			</div>
 			<div class="mt-2 flex space-x-2">
-				<a href={`/c/${contrib.id}`}>
-					<button
-						type="button"
-						class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-						>View</button
-					>
-				</a>
-				<a href={`/c/${contrib.id}/reviews`}>
-					<button
-						type="button"
-						class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-						>Review ({contrib.number_of_reviews})</button
-					>
-				</a>
+				<button
+					type="button"
+					on:click={() => goto(`/c/${contrib.id}`)}
+					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+					>View</button
+				>
+
+				<button
+					type="button"
+					on:click={() => goto(`/c/${contrib.id}/reviews`)}
+					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+					>Review ({contrib.number_of_reviews})</button
+				>
 			</div>
 		</div>
 	</div>

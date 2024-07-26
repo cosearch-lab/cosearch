@@ -1,4 +1,4 @@
-<div class="text-lg font-bold">Links</div>
+<div class="text-lg font-bold">Featured Links</div>
 
 <table class="w-1/2 text-xs border-collapse border border-slate-400">
 	<tbody>
