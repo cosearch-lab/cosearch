@@ -62,14 +62,14 @@
 			<div class="mt-2 flex space-x-2">
 				<button
 					type="button"
-					on:click={() => goto(`/c/${contrib.id}`)}
+					on:click={() => goto(`/contribution/${contrib.id}`)}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
 					>View</button
 				>
 
 				<button
 					type="button"
-					on:click={() => goto(`/c/${contrib.id}/reviews`)}
+					on:click={() => goto(`/contribution/${contrib.id}/reviews`)}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
 					>Review ({contrib.number_of_reviews})</button
 				>

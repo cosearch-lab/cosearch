@@ -107,25 +107,25 @@
 			<nav class="-mb-px flex space-x-8" aria-label="Tabs">
 				<!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700" -->
 				<a
-					href={`/c/${contrib_id}`}
+					href={`/contribution/${contrib_id}`}
 					class="flex whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium"
-					class:active={path === `/c/${contrib_id}`}
-					class:not-active={!(path === `/c/${contrib_id}`)}
+					class:active={path === `/contribution/${contrib_id}`}
+					class:not-active={!(path === `/contribution/${contrib_id}`)}
 					aria-current="page"
 				>
 					Details
 				</a>
 				<a
-					href={`/c/${contrib_id}/reviews`}
+					href={`/contribution/${contrib_id}/reviews`}
 					class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium"
-					class:active={path === `/c/${contrib_id}/reviews`}
-					class:not-active={!(path === `/c/${contrib_id}/reviews`)}
+					class:active={path === `/contribution/${contrib_id}/reviews`}
+					class:not-active={!(path === `/contribution/${contrib_id}/reviews`)}
 				>
 					Reviews
 					<span
 						class="ml-2 rounded-full px-2.5 py-0.5 text-xs font-medium"
-						class:active={path === `/c/${contrib_id}/reviews`}
-						class:not-active={!(path === `/c/${contrib_id}/reviews`)}
+						class:active={path === `/contribution/${contrib_id}/reviews`}
+						class:not-active={!(path === `/contribution/${contrib_id}/reviews`)}
 						>{contrib.number_of_reviews}</span
 					>
 				</a>

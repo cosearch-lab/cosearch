@@ -1,3 +1,5 @@
+<!-- TODO: custom open graph description per contributor -->
+
 <script lang="ts">
 	import { page } from '$app/stores';
 	import ContributionSummary from '$lib/components/contribution-summary.svelte';

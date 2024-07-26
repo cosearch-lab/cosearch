@@ -35,7 +35,7 @@
 	<button
 		type="button"
 		class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-		on:click={() => goto('/c/new')}
+		on:click={() => goto('/contribution/new')}
 	>
 		<i class="fa-solid fa-circle-plus mr-1"></i>
 		Add contribution

@@ -1,3 +1,5 @@
+<!-- TODO: custom open graph description per contribution -->
+
 <div class="text-lg font-bold">Featured Links</div>
 
 <table class="w-1/2 text-xs border-collapse border border-slate-400">
