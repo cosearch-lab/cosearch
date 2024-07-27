@@ -2,11 +2,16 @@
 	import type { Contribution } from '$lib/index';
 	import { goto } from '$app/navigation';
 	export let contrib: Contribution;
+	export let review = false;
 </script>
 
 <div class="flex space-x-7 items-center">
 	<div>
-		<i class="fas fa-solid fa-flag"></i>
+		{#if !review}
+			<i class="fas fa-solid fa-flag"></i>
+		{:else}
+			<i class="fas fa-solid fa-magnifying-glass"></i>
+		{/if}
 	</div>
 	<div>
 		<div>{contrib.title}</div>

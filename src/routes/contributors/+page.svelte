@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { mockContributors } from '$lib/index';
+	import { goto } from '$app/navigation';
+
+	export let data;
 </script>
 
 <nav class="flex" aria-label="Breadcrumb">
@@ -28,12 +31,27 @@
 	</ol>
 </nav>
 
+<div>
+	<button
+		type="button"
+		class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+		on:click={() => goto('/contributors/new')}
+	>
+		<i class="fa-solid fa-circle-plus mr-1"></i>
+		Add contributor
+	</button>
+</div>
+
 <ul class="list-disc ml-4 marker:text-gray-500">
-	{#each mockContributors as contributor}
-		<li>
-			<div class="flex items-center space-x-1">
-				<a href={`/${contributor.local_handle}`} class="l">{contributor.display_name}</a>
-			</div>
-		</li>
-	{/each}
+	{#if data.contributors}
+		{#each data.contributors as contributor}
+			<li>
+				<div class="flex items-center space-x-1">
+					<a href={`/${contributor.local_handle}`} class="l"
+						>{contributor.display_name} ({contributor.local_handle})</a
+					>
+				</div>
+			</li>
+		{/each}
+	{/if}
 </ul>

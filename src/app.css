@@ -5,3 +5,7 @@
 a.l {
     @apply text-blue-500 cursor-pointer hover:text-blue-700;
 }
+
+span.pre {
+    @apply bg-gray-300 font-mono px-1;
+}
