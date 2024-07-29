@@ -54,7 +54,7 @@
 
 			<div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
 				<div class="sm:col-span-4">
-					<label for="first-name" class="block text-sm font-medium leading-6 text-gray-900"
+					<label for="first-name" class="inline-block text-sm font-medium leading-6 text-gray-900"
 						>Title*</label
 					>
 					<div class="mt-2">

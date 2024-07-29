@@ -11,6 +11,9 @@ importers:
       openapi-fetch:
         specifier: ^0.10.2
         version: 0.10.2
+      svelte-awesome-color-picker:
+        specifier: ^3.1.2
+        version: 3.1.2(svelte@4.2.18)
       svelte-multiselect:
         specifier: ^10.3.0
         version: 10.3.0
@@ -645,6 +648,9 @@ packages:
 
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+
+  colord@2.9.3:
+    resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
 
   colorette@1.4.0:
     resolution: {integrity: sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==}
@@ -1445,6 +1451,16 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  svelte-awesome-color-picker@3.1.2:
+    resolution: {integrity: sha512-Lkz49c5EyYq8AnDTCmr6R9yZ12KE0DnG6/9hnKWDFYmeJHwmztNERfW/GgBvlYnVXhLzApT60VNCFGpjlCA4ZA==}
+    peerDependencies:
+      svelte: ^3.55.1 || ^4.0.0
+
+  svelte-awesome-slider@1.1.0:
+    resolution: {integrity: sha512-MgY6ZdBON42HVZqNWNjq2HOgyDlC35q0TNbV/YO1l1/bcb5yhM8EE97h1AJ/7F6t6sLzXhQ3qPf5nGyCdDSnCg==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0
+
   svelte-check@3.8.4:
     resolution: {integrity: sha512-61aHMkdinWyH8BkkTX9jPLYxYzaAAz/FK/VQqdr2FiCQQ/q04WCwDlpGbHff1GdrMYTmW8chlTFvRWL9k0A8vg==}
     hasBin: true
@@ -2202,6 +2218,8 @@ snapshots:
   color-name@1.1.3: {}
 
   color-name@1.1.4: {}
+
+  colord@2.9.3: {}
 
   colorette@1.4.0: {}
 
@@ -2966,6 +2984,16 @@ snapshots:
   supports-color@9.4.0: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  svelte-awesome-color-picker@3.1.2(svelte@4.2.18):
+    dependencies:
+      colord: 2.9.3
+      svelte: 4.2.18
+      svelte-awesome-slider: 1.1.0(svelte@4.2.18)
+
+  svelte-awesome-slider@1.1.0(svelte@4.2.18):
+    dependencies:
+      svelte: 4.2.18
 
   svelte-check@3.8.4(postcss-load-config@4.0.2(postcss@8.4.39))(postcss@8.4.39)(svelte@4.2.18):
     dependencies:

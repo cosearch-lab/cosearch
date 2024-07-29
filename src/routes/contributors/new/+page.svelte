@@ -10,7 +10,13 @@
 
 	let creationError: Error | null = null;
 
-	async function createContributor() {
+	async function createContributor(event: Event) {
+		const form = event.target.closest('form');
+		const valid = form.checkValidity();
+		if (!valid) {
+			form.reportValidity();
+			return;
+		}
 		try {
 			await POST('/contributors', {
 				body: new_contributor
@@ -52,6 +58,7 @@
 
 <!-- TODO: this form's DOM needs to be cleaned, using flex everywhere instead of grid.
     TODO: fix inputs name attributes and labels.
+	TODO: make labels inline-block instead of block
 -->
 <form class="sm:w-4/5">
 	<div class="space-y-5">
@@ -64,7 +71,7 @@
 
 			<div class=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
 				<div class="sm:col-span-4">
-					<label for="handle" class="block text-sm font-medium leading-6 text-gray-900"
+					<label for="handle" class="inline-block text-sm font-medium leading-6 text-gray-900"
 						>Handle*</label
 					>
 					<div class="flex items-center space-x-0.5">
@@ -95,7 +102,7 @@
 				</div>
 
 				<div class="sm:col-span-3">
-					<label for="display_name" class="block text-sm font-medium leading-6 text-gray-900"
+					<label for="display_name" class="inline-block text-sm font-medium leading-6 text-gray-900"
 						>Display name</label
 					>
 					<div class="mt-2">
@@ -224,8 +231,8 @@
 		>
 		<button
 			type="submit"
-			on:click={async () => {
-				await createContributor();
+			on:click={async (event) => {
+				await createContributor(event);
 			}}
 			class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 			>Save</button

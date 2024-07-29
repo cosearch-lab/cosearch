@@ -1,19 +1,15 @@
 <script lang="ts">
-	import type { Tag, Contribution } from '$lib/index';
-	import ContributionSummary from '$lib/components/contribution-summary.svelte';
-	import { mockContribs, tags } from '$lib/index';
 	import { goto } from '$app/navigation';
-</script>
+	import ContributorLink from '$lib/components/contributor-link.svelte';
 
-<!--
-TODO: add the posibility to emoji-react to the contributions.
--->
+	export let data;
+</script>
 
 <nav class="flex" aria-label="Breadcrumb">
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/" class="text-gray-400 hover:text-gray-500"> Contributions (200) </a>
+				<a href="/tags" class="text-gray-400 hover:text-gray-500"> Tags (10) </a>
 			</div>
 		</li>
 		<li>
@@ -39,15 +35,24 @@ TODO: add the posibility to emoji-react to the contributions.
 	<button
 		type="button"
 		class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-		on:click={() => goto('/contribution/new')}
+		on:click={() => goto('/tags/new')}
 	>
 		<i class="fa-solid fa-circle-plus mr-1"></i>
-		Add contribution
+		Add tag
 	</button>
 </div>
 
-<div class="flex flex-col space-y-5 ml-0 pb-20">
-	{#each mockContribs as contrib}
-		<ContributionSummary {contrib} />
-	{/each}
-</div>
+{#if data.tags}
+	<div class="flex flex-col space-y-2 items-start">
+		{#each data.tags as tag}
+			<a href="/tags/{tag.id}">
+				<div>
+					<span
+						class="text-white px-1 rounded-sm py-0.5 text-xs"
+						style="background-color: {tag.color}">{tag.display_name}</span
+					> <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+				</div>
+			</a>
+		{/each}
+	</div>
+{/if}

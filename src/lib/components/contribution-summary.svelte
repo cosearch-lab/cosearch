@@ -57,7 +57,9 @@
 			<div class="text-sm flex space-x-2">
 				<div>
 					{#each contrib.tags as tag, index}
-						<span class="{tag.color} text-white px-1 rounded-sm py-0.5 text-xs">{tag.name}</span
+						<a href="/tags/4">
+							<span class="{tag.color} text-white px-1 rounded-sm py-0.5 text-xs">{tag.name}</span
+							></a
 						>{#if index !== contrib.tags.length - 1}
 							<span>&nbsp;</span>
 						{/if}
@@ -77,6 +79,12 @@
 					on:click={() => goto(`/contribution/${contrib.id}/reviews`)}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
 					>Review ({contrib.number_of_reviews})</button
+				>
+
+				<button
+					type="button"
+					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+					title="Add reaction"><i class="fa-regular fa-face-smile"></i></button
 				>
 			</div>
 		</div>

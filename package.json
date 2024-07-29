@@ -38,6 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"openapi-fetch": "^0.10.2",
+		"svelte-awesome-color-picker": "^3.1.2",
 		"svelte-multiselect": "^10.3.0"
 	}
 }

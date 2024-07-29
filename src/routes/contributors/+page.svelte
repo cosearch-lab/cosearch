@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { mockContributors } from '$lib/index';
 	import { goto } from '$app/navigation';
+	import ContributorLink from '$lib/components/contributor-link.svelte';
 
 	export let data;
 </script>
@@ -47,9 +48,7 @@
 		{#each data.contributors as contributor}
 			<li>
 				<div class="flex items-center space-x-1">
-					<a href={`/${contributor.local_handle}`} class="l"
-						>{contributor.display_name} ({contributor.local_handle})</a
-					>
+					<ContributorLink {contributor} />
 				</div>
 			</li>
 		{/each}
