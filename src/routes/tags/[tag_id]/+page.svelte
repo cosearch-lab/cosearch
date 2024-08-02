@@ -134,7 +134,5 @@
 
 	<div class="text-lg font-bold">Tagged Contributions (3)</div>
 
-	<div class="flex flex-col space-y-5 ml-0 pb-20">
-		<ContributionSummary contrib={mockContribs[1]} />
-	</div>
+	<div class="flex flex-col space-y-5 ml-0 pb-20"></div>
 {/if}

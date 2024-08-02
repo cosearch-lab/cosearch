@@ -2,6 +2,9 @@
 	import { goto } from '$app/navigation';
 	import { POST } from '$lib/api';
 	import type { components } from '$lib/cosearch';
+	import type { PageData } from '../$types';
+
+	export let data: PageData;
 
 	let new_contributor: components['schemas']['ContributorUpsert'] = {
 		local_handle: '',
@@ -33,7 +36,9 @@
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/contributors" class="text-gray-400 hover:text-gray-500"> Contributors (20) </a>
+				<a href="/contributors" class="text-gray-400 hover:text-gray-500">
+					Contributors {#if data.contributors}({data.contributors.length}){/if}
+				</a>
 			</div>
 		</li>
 		<li>

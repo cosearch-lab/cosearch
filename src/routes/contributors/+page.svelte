@@ -10,7 +10,9 @@
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/contributors" class="text-gray-400 hover:text-gray-500"> Contributors (32) </a>
+				<a href="/contributors" class="text-gray-400 hover:text-gray-500">
+					Contributors {#if data.contributors}({data.contributors.length}){/if}
+				</a>
 			</div>
 		</li>
 		<li>

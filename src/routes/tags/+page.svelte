@@ -9,7 +9,9 @@
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/tags" class="text-gray-400 hover:text-gray-500"> Tags (10) </a>
+				<a href="/tags" class="text-gray-400 hover:text-gray-500">
+					Tags {#if data.tags}({data.tags.length}){/if}
+				</a>
 			</div>
 		</li>
 		<li>

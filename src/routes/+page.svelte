@@ -3,6 +3,7 @@
 	import ContributionSummary from '$lib/components/contribution-summary.svelte';
 	import { mockContribs, tags } from '$lib/index';
 	import { goto } from '$app/navigation';
+	export let data;
 </script>
 
 <!--
@@ -13,7 +14,9 @@ TODO: add the posibility to emoji-react to the contributions.
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/" class="text-gray-400 hover:text-gray-500"> Contributions (200) </a>
+				<a href="/" class="text-gray-400 hover:text-gray-500">
+					Contributions {#if data.contributions}({data.contributions.length}){/if}
+				</a>
 			</div>
 		</li>
 		<li>
@@ -47,7 +50,9 @@ TODO: add the posibility to emoji-react to the contributions.
 </div>
 
 <div class="flex flex-col space-y-5 ml-0 pb-20">
-	{#each mockContribs as contrib}
-		<ContributionSummary {contrib} />
-	{/each}
+	{#if data.contributions}
+		{#each data.contributions as contrib}
+			<ContributionSummary {contrib} />
+		{/each}
+	{/if}
 </div>

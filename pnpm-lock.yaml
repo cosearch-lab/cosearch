@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      dayjs:
+        specifier: ^1.11.12
+        version: 1.11.12
       openapi-fetch:
         specifier: ^0.10.2
         version: 0.10.2
@@ -66,6 +69,9 @@ importers:
       svelte-check:
         specifier: ^3.6.0
         version: 3.8.4(postcss-load-config@4.0.2(postcss@8.4.39))(postcss@8.4.39)(svelte@4.2.18)
+      svelte-copy:
+        specifier: ^1.4.2
+        version: 1.4.2(svelte@4.2.18)
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.4
@@ -678,6 +684,9 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+
+  dayjs@1.11.12:
+    resolution: {integrity: sha512-Rt2g+nTbLlDWZTwwrIXjy9MeiZmSDI375FvZs72ngxx8PDC6YXOeR3q5LAuPzjZQxhiWdRKac7RKV+YyQYfYIg==}
 
   debug@4.3.5:
     resolution: {integrity: sha512-pt0bNEmneDIvdL1Xsd9oDQ/wrQRkXDT4AUWlNZNPKvW5x/jyO9VFXkJUP07vQ2upmw5PlaITaPKc31jK13V+jg==}
@@ -1467,6 +1476,11 @@ packages:
     peerDependencies:
       svelte: ^3.55.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
 
+  svelte-copy@1.4.2:
+    resolution: {integrity: sha512-Q99JvWDzB58JlbVWX2VxjHX/CQ5ayDLUGGJgL2EqU1+3c9CDOtxLrKFZx5CVN5bN/DDl62nxtazz0j3nGX1Xew==}
+    peerDependencies:
+      svelte: ^3.55.0 || ^4.0.0
+
   svelte-eslint-parser@0.39.2:
     resolution: {integrity: sha512-87UwLuWTtDIuzWOhOi1zBL5wYVd07M5BK1qZ57YmXJB5/UmjUNJqGy3XSOhPqjckY1dATNV9y+mx+nI0WH6HPA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -2242,6 +2256,8 @@ snapshots:
 
   cssesc@3.0.0: {}
 
+  dayjs@1.11.12: {}
+
   debug@4.3.5(supports-color@9.4.0):
     dependencies:
       ms: 2.1.2
@@ -3014,6 +3030,10 @@ snapshots:
       - sass
       - stylus
       - sugarss
+
+  svelte-copy@1.4.2(svelte@4.2.18):
+    dependencies:
+      svelte: 4.2.18
 
   svelte-eslint-parser@0.39.2(svelte@4.2.18):
     dependencies:
