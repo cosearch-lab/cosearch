@@ -1,6 +1,9 @@
 import { GET } from '$lib/api';
 
 export async function load({ params }) {
+
+    const contributions = await GET('/contributions');
+
     const contribution = await GET('/contributions/{contribution_id}', { params: { path: { contribution_id: params.contribution } } });
 
     const contributors = await GET('/contributors');
@@ -13,6 +16,7 @@ export async function load({ params }) {
     }
 
     return {
+        contributions: contributions.data,
         contribution: contribution.data,
         contributors: contributors.data,
         tags_per_id: tags_per_id,

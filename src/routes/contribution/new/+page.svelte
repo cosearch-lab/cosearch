@@ -40,7 +40,7 @@
 			await POST('/contributions', {
 				body: new_contribution
 			});
-			goto('/');
+			// goto('/');
 		} catch (error) {
 			creationError = error;
 			console.error(error);

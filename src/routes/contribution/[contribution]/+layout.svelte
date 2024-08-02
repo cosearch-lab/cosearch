@@ -31,7 +31,9 @@
 		<ol role="list" class="flex items-center space-x-0">
 			<li>
 				<div>
-					<a href="/" class="text-gray-400 hover:text-gray-500"> Contributions (200) </a>
+					<a href="/" class="text-gray-400 hover:text-gray-500">
+						Contributions {#if data.contributions}({data.contributions.length}){/if}
+					</a>
 				</div>
 			</li>
 			<li>

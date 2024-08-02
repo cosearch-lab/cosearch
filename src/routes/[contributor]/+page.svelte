@@ -8,8 +8,12 @@
 
 <div class="flex flex-col space-y-5 ml-0 pb-20">
 	{#if data.contributor}
-		{#each data.contributor.contributions as contrib}
-			<ContributionSummary {contrib} />
-		{/each}
+		{#if data.contributor.contributions.length > 0}
+			{#each data.contributor.contributions as contrib}
+				<ContributionSummary {contrib} />
+			{/each}
+		{:else}
+			<p class="text-xs">This contributor has not contributed yet.</p>
+		{/if}
 	{/if}
 </div>
