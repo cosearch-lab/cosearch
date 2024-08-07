@@ -110,6 +110,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/contributions/{contribution_id}/children": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Contribution Children */
+        get: operations["read_contribution_children_contributions__contribution_id__children_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/tags": {
         parameters: {
             query?: never;
@@ -177,7 +194,8 @@ export interface paths {
         /** Update Review */
         put: operations["update_review_reviews__review_id__put"];
         post?: never;
-        delete?: never;
+        /** Delete Review */
+        delete: operations["delete_review_reviews__review_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -198,14 +216,22 @@ export interface components {
              * Format: date-time
              */
             date: string;
-            /** Discord Chat Link */
-            discord_chat_link?: string | null;
             /** Links */
             links: components["schemas"]["ContributionLinks"][];
             /** Description */
             description: string;
-            /** Deleted At */
-            deleted_at?: string | null;
+            /** Archived At */
+            archived_at?: string | null;
+            /** Archive Reason */
+            archive_reason?: string | null;
+            /** Discord Chat Link */
+            discord_chat_link?: string | null;
+            /** Github Link */
+            github_link?: string | null;
+            /** Forum Link */
+            forum_link?: string | null;
+            /** Wiki Link */
+            wiki_link?: string | null;
             /** Contributors */
             contributors: number[];
             /** Tags */
@@ -214,12 +240,12 @@ export interface components {
              * Dependencies
              * @default []
              */
-            dependencies: number[];
+            dependencies: string[];
         };
         /** ContributionDependency */
         ContributionDependency: {
             /** Id */
-            id: number;
+            id: string;
             /** Title */
             title: string;
             /** Short Title */
@@ -238,7 +264,7 @@ export interface components {
         /** ContributionShort */
         ContributionShort: {
             /** Id */
-            id: number;
+            id: string;
             /** Title */
             title: string;
             /** Short Title */
@@ -280,14 +306,22 @@ export interface components {
              * Format: date-time
              */
             date: string;
-            /** Discord Chat Link */
-            discord_chat_link?: string | null;
             /** Links */
             links: components["schemas"]["ContributionLinks"][];
             /** Description */
             description: string;
-            /** Deleted At */
-            deleted_at?: string | null;
+            /** Archived At */
+            archived_at?: string | null;
+            /** Archive Reason */
+            archive_reason?: string | null;
+            /** Discord Chat Link */
+            discord_chat_link?: string | null;
+            /** Github Link */
+            github_link?: string | null;
+            /** Forum Link */
+            forum_link?: string | null;
+            /** Wiki Link */
+            wiki_link?: string | null;
             /** Contributors */
             contributors: number[];
             /** Tags */
@@ -296,7 +330,7 @@ export interface components {
              * Dependencies
              * @default []
              */
-            dependencies: number[];
+            dependencies: string[];
         };
         /** ContributionWithAttributesShortPublic */
         ContributionWithAttributesShortPublic: {
@@ -309,16 +343,16 @@ export interface components {
              * Format: date-time
              */
             date: string;
-            /** Discord Chat Link */
-            discord_chat_link?: string | null;
             /** Links */
             links: components["schemas"]["ContributionLinks"][];
             /** Description */
             description: string;
-            /** Deleted At */
-            deleted_at?: string | null;
+            /** Archived At */
+            archived_at?: string | null;
+            /** Archive Reason */
+            archive_reason?: string | null;
             /** Id */
-            id: number;
+            id: string;
             /**
              * Created At
              * Format: date-time
@@ -329,6 +363,14 @@ export interface components {
              * Format: date-time
              */
             updated_at: string;
+            /** Discord Chat Link */
+            discord_chat_link?: string | null;
+            /** Github Link */
+            github_link?: string | null;
+            /** Forum Link */
+            forum_link?: string | null;
+            /** Wiki Link */
+            wiki_link?: string | null;
             /**
              * Contributors
              * @default []
@@ -387,8 +429,6 @@ export interface components {
             extra_info?: {
                 [key: string]: string | undefined;
             } | null;
-            /** Deleted At */
-            deleted_at?: string | null;
         };
         /**
          * ContributorViewPublic
@@ -415,8 +455,6 @@ export interface components {
             extra_info?: {
                 [key: string]: string | undefined;
             } | null;
-            /** Deleted At */
-            deleted_at?: string | null;
             /** Id */
             id: number;
             /**
@@ -464,8 +502,6 @@ export interface components {
             extra_info?: {
                 [key: string]: string | undefined;
             } | null;
-            /** Deleted At */
-            deleted_at?: string | null;
             /** Id */
             id: number;
             /**
@@ -500,10 +536,8 @@ export interface components {
             link: string;
             /** Notes */
             notes: string;
-            /** Deleted At */
-            deleted_at?: string | null;
             /** Contribution Id */
-            contribution_id: number;
+            contribution_id: string;
             /** Reviewers */
             reviewers: number[];
         };
@@ -513,12 +547,10 @@ export interface components {
             link: string;
             /** Notes */
             notes: string;
-            /** Deleted At */
-            deleted_at?: string | null;
             /** Id */
             id: number;
             /** Contribution Id */
-            contribution_id: number;
+            contribution_id: string;
             /**
              * Created At
              * Format: date-time
@@ -546,10 +578,8 @@ export interface components {
             link: string;
             /** Notes */
             notes: string;
-            /** Deleted At */
-            deleted_at?: string | null;
             /** Contribution Id */
-            contribution_id: number;
+            contribution_id: string;
             /** Reviewers */
             reviewers: number[];
         };
@@ -581,6 +611,16 @@ export interface components {
             color: string;
             /** Id */
             id: number;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
         };
         /** TagUpdate */
         TagUpdate: {
@@ -588,6 +628,68 @@ export interface components {
             display_name: string;
             /** Color */
             color: string;
+        };
+        /** TagViewPublic */
+        TagViewPublic: {
+            /** Display Name */
+            display_name: string;
+            /** Color */
+            color: string;
+            /** Id */
+            id: number;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+            /**
+             * Contributions
+             * @default []
+             */
+            contributions: components["schemas"]["TaggedContributionShort"][];
+        };
+        /**
+         * TaggedContributionShort
+         * @description Used to display contribution for a specific tag.
+         *     Type of attribute `tags` is Tag instead of TagPublic to avoid infinite recursion.
+         */
+        TaggedContributionShort: {
+            /** Id */
+            id: string;
+            /** Title */
+            title: string;
+            /** Short Title */
+            short_title: string;
+            /**
+             * Date
+             * Format: date-time
+             */
+            date: string;
+            /**
+             * Contributors
+             * @default []
+             */
+            contributors: components["schemas"]["ContributorShort"][];
+            /**
+             * Tags
+             * @default []
+             */
+            tags: components["schemas"]["Tag"][];
+            /**
+             * Reviews
+             * @default []
+             */
+            reviews: components["schemas"]["ReviewShort"][];
+            /**
+             * Dependencies
+             * @default []
+             */
+            dependencies: components["schemas"]["ContributionDependency"][];
         };
         /** ValidationError */
         ValidationError: {
@@ -870,7 +972,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                contribution_id: number;
+                contribution_id: string;
             };
             cookie?: never;
         };
@@ -901,7 +1003,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                contribution_id: number;
+                contribution_id: string;
             };
             cookie?: never;
         };
@@ -918,6 +1020,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ContributionWithAttributesShortPublic"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_contribution_children_contributions__contribution_id__children_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contribution_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContributionShort"][];
                 };
             };
             /** @description Validation Error */
@@ -949,7 +1082,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Tag"][];
+                    "application/json": components["schemas"]["TagPublic"][];
                 };
             };
             /** @description Validation Error */
@@ -982,7 +1115,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Tag"];
+                    "application/json": components["schemas"]["TagPublic"];
                 };
             };
             /** @description Validation Error */
@@ -1013,7 +1146,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Tag"];
+                    "application/json": components["schemas"]["TagViewPublic"];
                 };
             };
             /** @description Validation Error */
@@ -1048,7 +1181,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Tag"];
+                    "application/json": components["schemas"]["TagPublic"];
                 };
             };
             /** @description Validation Error */
@@ -1211,6 +1344,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ReviewPublic"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_review_reviews__review_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                review_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Message"];
                 };
             };
             /** @description Validation Error */

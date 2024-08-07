@@ -9,3 +9,7 @@ a.l {
 span.pre {
     @apply bg-gray-300 font-mono px-1;
 }
+
+a.truncate-dependencies {
+    @apply max-w-[100px] truncate inline-block;
+}

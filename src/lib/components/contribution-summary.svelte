@@ -31,11 +31,15 @@
 			{#if contrib.dependencies && contrib.dependencies.length > 0}
 				<div class="text-sm flex space-x-1">
 					<span>Dependencies:</span>
-					<div>
+					<div class="flex">
 						{#each contrib.dependencies as dependency, index}
-							<a href="/" class="l">{dependency}</a>{#if index !== contrib.dependencies.length - 1}
-								<span>, </span>
-							{/if}
+							<div>
+								<a href="/contribution/{dependency.id}" class="l truncate-dependencies"
+									>{dependency.short_title || dependency.title}</a
+								>
+							</div>
+							{#if index !== contrib.dependencies.length - 1}
+								<div class="mr-1">,</div>{/if}
 						{/each}
 					</div>
 				</div>

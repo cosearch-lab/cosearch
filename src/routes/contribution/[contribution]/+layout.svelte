@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { Tag, Contribution } from '$lib/index';
-	import { tags } from '$lib/index';
 	import { prettyPrintDate } from '$lib';
 	import { goto } from '$app/navigation';
 
@@ -9,19 +7,6 @@
 	$: path = $page.url.pathname;
 
 	let contrib_id = $page.params.contribution;
-
-	let contrib: Contribution = {
-		id: '5xvr42ix',
-		title: 'Coq-BB5',
-		date: 'Apr 24',
-		authors: ['mxdys'],
-		dependencies: ['FAR', 'MITWFAR', 'n-gram CPS', 'busycoq'],
-		tags: [tags[0], tags[1]],
-		number_of_reviews: 1,
-		number_of_reproductions: null,
-		number_of_views: 10,
-		number_of_stars: 150
-	};
 
 	export let data;
 </script>
@@ -66,7 +51,9 @@
 		<div class="text-md flex space-x-1">
 			<span>{prettyPrintDate(data.contribution.date)}</span> <span>&middot;</span>
 			{#each data.contribution.contributors as contributor, index}
-				<a href="/" class="l">{contributor.display_name || contributor.local_handle}</a>
+				<a href="/{contributor.local_handle}" class="l"
+					>{contributor.display_name || contributor.local_handle}</a
+				>
 				{#if index !== data.contribution.contributors.length - 1},
 				{/if}
 			{/each}
@@ -75,11 +62,15 @@
 		{#if data.contribution.dependencies.length > 0}
 			<div class="text-sm flex space-x-1">
 				<span>Dependencies:</span>
-				<div>
-					{#each contrib.dependencies as dependency, index}
-						<a href="/" class="l">{dependency}</a>{#if index !== contrib.dependencies.length - 1}
-							<span>, </span>
-						{/if}
+				<div class="flex">
+					{#each data.contribution.dependencies as dependency, index}
+						<div>
+							<a href="/contribution/{dependency.id}" class="l truncate-dependencies"
+								>{dependency.short_title || dependency.title}</a
+							>
+						</div>
+						{#if index !== data.contribution.dependencies.length - 1}
+							<div class="mr-1">,</div>{/if}
 					{/each}
 				</div>
 			</div>
@@ -91,7 +82,7 @@
 						<span
 							class=" text-white px-1 rounded-sm py-0.5 text-xs"
 							style="background-color: {tag.color}">{tag.display_name}</span
-						>{#if index !== contrib.tags.length - 1}
+						>{#if index !== data.contribution.tags.length - 1}
 							<span>&nbsp;</span>
 						{/if}
 					{/each}

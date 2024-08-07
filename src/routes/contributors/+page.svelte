@@ -1,9 +1,37 @@
 <script lang="ts">
-	import { mockContributors } from '$lib/index';
+	import { mockContributors, pretty_print_contributor } from '$lib/index';
 	import { goto } from '$app/navigation';
 	import ContributorLink from '$lib/components/contributor-link.svelte';
+	import type { components } from '$lib/cosearch';
 
 	export let data;
+
+	let sorted_contributors: null | components['schemas']['ContributorShort'][] = null;
+
+	function normalise_contributor_for_sorting(
+		contributor: components['schemas']['ContributorShort']
+	) {
+		if (!contributor.display_name) {
+			return contributor.local_handle.toLowerCase();
+		}
+
+		const split = contributor.display_name.split(' ');
+		return split[split.length - 1].toLowerCase();
+	}
+
+	$: {
+		if (data.contributors) {
+			sorted_contributors = data.contributors.sort((a, b) => {
+				if (normalise_contributor_for_sorting(a) < normalise_contributor_for_sorting(b)) {
+					return -1;
+				}
+				if (normalise_contributor_for_sorting(a) > normalise_contributor_for_sorting(b)) {
+					return 1;
+				}
+				return 0;
+			});
+		}
+	}
 </script>
 
 <nav class="flex" aria-label="Breadcrumb">
@@ -46,8 +74,8 @@
 </div>
 
 <ul class="list-disc ml-4 marker:text-gray-500">
-	{#if data.contributors}
-		{#each data.contributors as contributor}
+	{#if sorted_contributors}
+		{#each sorted_contributors as contributor}
 			<li>
 				<div class="flex items-center space-x-1">
 					<ContributorLink {contributor} />

@@ -26,7 +26,7 @@
 				body: data.contributor
 			});
 			await invalidateAll();
-			goto(`/${contributor}`);
+			goto(`/${data.contributor.local_handle}`);
 		} catch (error) {
 			updateError = error;
 			console.error(error);

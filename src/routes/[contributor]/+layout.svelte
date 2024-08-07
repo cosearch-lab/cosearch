@@ -5,6 +5,7 @@
 	import { page } from '$app/stores';
 	import ContributionSummary from '$lib/components/contribution-summary.svelte';
 	import { mockContribs } from '$lib/index';
+	import { pretty_print_contributor } from '$lib';
 
 	export let data;
 
@@ -39,7 +40,8 @@
 				</svg>
 				<a
 					href={`/${contributor}`}
-					class="ml-0 text-sm font-medium text-gray-500 hover:text-gray-700">{contributor}</a
+					class="ml-0 text-sm font-medium text-gray-500 hover:text-gray-700"
+					>{pretty_print_contributor(data.contributor)}</a
 				>
 			</div>
 		</li>
@@ -55,7 +57,7 @@
 {#if data.contributor}
 	<div class="text-lg font-bold">Infos</div>
 	{#if path != `/${contributor}/edit`}
-		<table class="w-full sm:w-4/5 text-xs border-collapse border border-slate-400">
+		<table class="lg:w-1/2 md:w-4/5 w-full text-xs border-collapse border border-slate-400">
 			<tbody>
 				<tr>
 					<td class="border border-slate-300 p-1 w-1/3">Handle</td>

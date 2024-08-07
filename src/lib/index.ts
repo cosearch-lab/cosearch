@@ -9,6 +9,8 @@ import { mockContributors } from "./contributor"
 export type { Contributor }
 export { mockContributors }
 
+import type { components } from '$lib/cosearch';
+
 export function prettyPrintDate(date: string) {
     const d = new Date(date);
     const today = new Date();
@@ -16,4 +18,9 @@ export function prettyPrintDate(date: string) {
     if (d.getFullYear() !== today.getFullYear())
         return `${d.toLocaleString('en', { month: 'short' })} ${d.getFullYear()}`;
     return `${d.toLocaleString('en', { month: 'short' })} ${d.getDate()}`;
+}
+
+export function pretty_print_contributor(contributor: components['schemas']['ContributorShort']) {
+    if (!contributor.display_name) return `${contributor.local_handle}`;
+    return `${contributor.display_name} (${contributor.local_handle})`;
 }

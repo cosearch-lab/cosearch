@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 
 	import { POST } from '$lib/api';
 	import type { components } from '$lib/cosearch';
@@ -19,6 +19,7 @@
 	};
 
 	let selected_contributors = [];
+	let selected_contributions_dependencies = [];
 	let selected_tags = [];
 
 	let creationError = null;
@@ -34,13 +35,17 @@
 			new_contribution.contributors = selected_contributors.map(
 				(contributor) => contributor.contributor.id
 			);
-			console.log(new_contribution.contributors);
+			console.log(selected_contributions_dependencies);
+			new_contribution.dependencies = selected_contributions_dependencies.map(
+				(contribution) => contribution.contribution.id
+			);
 			new_contribution.tags = selected_tags.map((tag) => tag.tag.id);
 			new_contribution.date = date.toISOString();
 			await POST('/contributions', {
 				body: new_contribution
 			});
-			// goto('/');
+			await invalidateAll();
+			goto('/');
 		} catch (error) {
 			creationError = error;
 			console.error(error);
@@ -52,7 +57,9 @@
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/" class="text-gray-400 hover:text-gray-500"> Contributions (200) </a>
+				<a href="/" class="text-gray-400 hover:text-gray-500">
+					Contributions {#if data.contributions}({data.contributions.length}){/if}
+				</a>
 			</div>
 		</li>
 		<li>
@@ -83,9 +90,11 @@
 		bind:contrib={new_contribution}
 		bind:date
 		contributors={data.contributors}
+		contributions={data.contributions}
 		tags={data.tags}
 		bind:selected_contributors
 		bind:selected_tags
+		bind:selected_contributions_dependencies
 	/>
 
 	<div class="mt-5 flex items-center justify-end gap-x-6 pb-12">

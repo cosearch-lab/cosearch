@@ -2,13 +2,16 @@
 	import type { components } from '$lib/cosearch';
 	export let contrib:
 		| components['schemas']['ContributionCreate']
-		| components['schemas']['ContributionShort'];
+		| components['schemas']['ContributionWithAttributesShortPublic'];
 	import DateInput from '$lib/components/DateInput.svelte';
 	export let edit = false;
 	export let contributors: components['schemas']['ContributorShort'][] | undefined;
+	export let contributions: components['schemas']['ContributionShort'][] | undefined;
 	export let tags: components['schemas']['Tag'][] | undefined;
 	import MultiSelect from 'svelte-multiselect';
 	import { invalidateAll } from '$app/navigation';
+
+	import { pretty_print_contributor } from '$lib';
 
 	export let date = new Date();
 	if (edit) {
@@ -16,16 +19,26 @@
 	}
 	export let selected_contributors;
 
-	function pretty_print_contributor(contributor: components['schemas']['ContributorShort']) {
-		if (!contributor.display_name) return `${contributor.local_handle}`;
-		return `${contributor.display_name} (${contributor.local_handle})`;
-	}
+	export let selected_contributions_dependencies;
 
 	if (edit) {
 		selected_contributors = contrib.contributors.map((contributor) => ({
 			label: pretty_print_contributor(contributor),
-			style: `color: #60a5fa`,
+			style: `color: #3b82f6`,
 			contributor: contributor
+		}));
+	}
+
+	function pretty_print_contribution(contribution: components['schemas']['ContributionShort']) {
+		if (!contribution.short_title) return `${contribution.title} (ID: ${contribution.id})`;
+		return `${contribution.short_title} (ID: ${contribution.id})`;
+	}
+
+	if (edit) {
+		selected_contributions_dependencies = contrib.dependencies.map((contribution) => ({
+			label: pretty_print_contribution(contribution),
+			style: `color: #3b82f6`,
+			contribution: contribution
 		}));
 	}
 
@@ -139,7 +152,7 @@
 							--sms-selected-bg="rgb(229,231,235)"
 							options={contributors.map((contributor) => ({
 								label: pretty_print_contributor(contributor),
-								style: `color: #60a5fa`,
+								style: `color: #3b82f6`,
 								contributor: contributor
 							}))}
 							bind:selected={selected_contributors}
@@ -171,10 +184,13 @@
 				>
 				<div class="mt-2">
 					<MultiSelect
-						options={ui_libs.map((label) => ({
-							label,
-							style: `background-color: ${random_color()}`
+						--sms-selected-bg="rgb(229,231,235)"
+						options={contributions.map((contribution) => ({
+							label: pretty_print_contribution(contribution),
+							style: `color: #3b82f6`,
+							contribution: contribution
 						}))}
+						bind:selected={selected_contributions_dependencies}
 						name="dependencies"
 						placeholder="Select dependencies"
 						removeAllTitle="Remove all dependencies"
@@ -220,7 +236,17 @@
 					Appropriate tagging will help the discoverability of the contribution.
 				</p>
 			</div>
+		</div>
+	</div>
 
+	<div class="border-b border-gray-900/10 pb-12">
+		<h2 class="text-base font-semibold leading-7 text-gray-900">Featured Links</h2>
+		<p class="mt-1 text-sm leading-6 text-gray-600">
+			Feel free to add any link (GitHub, Discourse, bbchallenge, etc...) that you think is relevant
+			to this contribution.
+		</p>
+
+		<div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
 			<div class="sm:col-span-4">
 				<label for="where-chat" class="block text-sm font-medium leading-6 text-gray-900"
 					>Where to chat about it? <a
@@ -241,96 +267,135 @@
 					/>
 				</div>
 				<p class="mt-1 text-sm leading-6 text-gray-600">
-					Link to the discord channel or thread that is most relevant for discussing this
-					contribution.
+					Link to the discord channel or thread (or message to thread from) that is most relevant
+					for discussing this contribution.
 				</p>
 			</div>
-		</div>
-	</div>
 
-	<div class="border-b border-gray-900/10 pb-12">
-		<h2 class="text-base font-semibold leading-7 text-gray-900">Featured Links</h2>
-		<p class="mt-1 text-sm leading-6 text-gray-600">
-			Feel free to add any link (GitHub, Discourse, bbchallenge, etc...) that you think is relevant
-			to this contribution.
-		</p>
-
-		<div class="w-5/6 my-5">
-			<table>
-				<thead>
-					<tr>
-						<th class="text-left text-sm font-medium leading-6 text-gray-900">Name</th>
-						<th class="text-left text-sm font-medium leading-6 text-gray-900">Link</th>
-					</tr>
-				</thead>
-				<tbody>
-					{#each contrib.links as link, i}
-						<tr>
-							<td class="w-2/5 pr-2"
-								><input
-									type="text"
-									name="link-name-{i}"
-									id="link-name-{i}"
-									bind:value={link.description}
-									autocomplete="off"
-									class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-								/></td
-							>
-							<td
-								><input
-									type="text"
-									name="link-url-{i}"
-									id="link-url-{i}"
-									bind:value={link.url}
-									autocomplete="off"
-									class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-								/>
-							</td>
-							<td
-								><button
-									type="button"
-									on:click={() => {
-										removeLink(i);
-									}}><i class="fa-regular fa-circle-xmark pl-1"></i></button
-								></td
-							>
-						</tr>
-					{/each}
-					<tr>
-						<td class="w-2/5 pr-2"
-							><input
-								type="text"
-								name="link-name"
-								id="link-name"
-								bind:value={link_add.description}
-								autocomplete="off"
-								class=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-							/></td
-						>
-						<td
-							><input
-								type="text"
-								name="link-url"
-								id="link-url"
-								bind:value={link_add.url}
-								autocomplete="off"
-								class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-							/></td
-						>
-						<td class="invisible"><i class="fa-regular fa-circle-xmark pl-1"></i></td>
-					</tr>
-				</tbody>
-			</table>
-
-			<div class="mt-3">
-				<button
-					type="button"
-					class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-					on:click={() => addFeaturedLink()}
+			<div class="sm:col-span-4">
+				<label for="github-link" class="block text-sm font-medium leading-6 text-gray-900"
+					>GitHub <i class="fa-brands fa-github"></i></label
 				>
-					<i class="fa-solid fa-circle-plus mr-1"></i>
-					Add featured link
-				</button>
+
+				<div class="mt-2">
+					<input
+						type="text"
+						name="github-link"
+						id="github-link"
+						bind:value={contrib.github_link}
+						autocomplete="off"
+						class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+					/>
+				</div>
+				<p class="mt-1 text-sm leading-6 text-gray-600">
+					Link to the contribution's GitHub repo/gist, if relevant.
+				</p>
+			</div>
+
+			<div class="sm:col-span-4">
+				<label for="forum-link" class="block text-sm font-medium leading-6 text-gray-900"
+					>Forum post <a
+						href="https://discuss.bbchallenge.org"
+						title="bbchallenge discord server invite"
+						target="_blank"><i class="fa-brands fa-discourse"></i></a
+					></label
+				>
+
+				<div class="mt-2">
+					<input
+						type="text"
+						name="forum-link"
+						id="forum-link"
+						autocomplete="off"
+						bind:value={contrib.forum_link}
+						class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+					/>
+				</div>
+				<p class="mt-1 text-sm leading-6 text-gray-600">
+					Link to the contribution's forum topic or message, if relevant.
+				</p>
+			</div>
+
+			<div class="sm:col-span-4">
+				<label for="wiki-link" class="block text-sm font-medium leading-6 text-gray-900"
+					>Wiki link <a
+						href="https://wiki.bbchallenge.org"
+						title="bbchallenge discord server invite"
+						target="_blank"><i class="fa-solid fa-book"></i></a
+					></label
+				>
+
+				<div class="mt-2">
+					<input
+						type="text"
+						name="wiki-link"
+						id="wiki-link"
+						autocomplete="off"
+						bind:value={contrib.wiki_link}
+						class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+					/>
+				</div>
+				<p class="mt-1 text-sm leading-6 text-gray-600">
+					Link to the contribution's wiki page, if relevant.
+				</p>
+			</div>
+
+			<div class="sm:col-span-4 mb-5">
+				<h2 class="text-base font-semibold leading-7 text-gray-900">Custom featured links</h2>
+				{#if contrib.links.length > 0}
+					<table>
+						<thead>
+							<tr>
+								<th class="text-left text-sm font-medium leading-6 text-gray-900">Name</th>
+								<th class="text-left text-sm font-medium leading-6 text-gray-900">Link</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each contrib.links as link, i}
+								<tr>
+									<td class="w-2/5 pr-2"
+										><input
+											type="text"
+											name="link-name-{i}"
+											id="link-name-{i}"
+											bind:value={link.description}
+											autocomplete="off"
+											class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+										/></td
+									>
+									<td
+										><input
+											type="text"
+											name="link-url-{i}"
+											id="link-url-{i}"
+											bind:value={link.url}
+											autocomplete="off"
+											class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+										/>
+									</td>
+									<td
+										><button
+											type="button"
+											on:click={() => {
+												removeLink(i);
+											}}><i class="fa-regular fa-circle-xmark pl-1"></i></button
+										></td
+									>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				{/if}
+				<div class="mt-3">
+					<button
+						type="button"
+						class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+						on:click={() => addFeaturedLink()}
+					>
+						<i class="fa-solid fa-circle-plus mr-1"></i>
+						Add featured link
+					</button>
+				</div>
 			</div>
 		</div>
 
@@ -352,10 +417,13 @@
 
 			<div class="col-span-full mt-5">
 				<label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900"
-					>Attachments</label
-				>
-				<div
-					class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"
+					>Attachments
+				</label>
+
+				<em class="text-green-500 text-sm">Coming soon</em>
+
+				<!-- <div
+					class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 opacity-50"
 				>
 					<div class="text-center">
 						<svg
@@ -374,15 +442,16 @@
 							<label
 								for="file-upload"
 								class="relative cursor-pointer rounded-md font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+								
 							>
 								<span>Upload a file</span>
-								<input id="file-upload" name="file-upload" type="file" class="sr-only" />
+								<input id="file-upload" name="file-upload" type="file" class="sr-only" disabled />
 							</label>
 							<p class="pl-1">or drag and drop</p>
 						</div>
 						<p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

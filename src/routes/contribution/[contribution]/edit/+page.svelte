@@ -12,22 +12,12 @@
 	let deletionError = null;
 	let date = new Date();
 
-	async function deleteContribution(event: Event) {
-		try {
-			await DELETE('/contributions/{contribution_id}', {
-				params: { path: { contribution_id: data.contribution.id } }
-			});
-			goto('/');
-		} catch (error) {
-			deletionError = error;
-			console.error(error);
-		}
-	}
-
 	let update_contribution: components['schemas']['ContributionUpdate'];
 	if (data.contribution) {
 		update_contribution = { ...data.contribution };
 	}
+
+	let selected_contributions_dependencies;
 
 	let updateError = null;
 	async function updateContribution(event: Event) {
@@ -43,6 +33,10 @@
 			);
 
 			update_contribution.tags = selected_tags.map((tag) => tag.tag.id);
+			update_contribution.dependencies = selected_contributions_dependencies.map(
+				(contribution) => contribution.contribution.id
+			);
+			console.log(selected_contributions_dependencies);
 			update_contribution.date = date.toISOString();
 			await PUT('/contributions/{contribution_id}', {
 				params: { path: { contribution_id: data.contribution.id } },
@@ -63,9 +57,11 @@
 		bind:date
 		edit={true}
 		contributors={data.contributors}
+		contributions={data.contributions}
 		tags={data.tags}
 		bind:selected_contributors
 		bind:selected_tags
+		bind:selected_contributions_dependencies
 	/>
 
 	<div class="mt-5 flex items-center justify-between gap-x-6 pb-12">

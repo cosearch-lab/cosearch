@@ -4,6 +4,12 @@
 	import { mockContribs, tags } from '$lib/index';
 	import { goto } from '$app/navigation';
 	export let data;
+
+	function compare_contribs(a, b) {
+		if (a.date > b.date) return -1;
+		if (a.date < b.date) return 1;
+		return 0;
+	}
 </script>
 
 <!--
@@ -51,7 +57,7 @@ TODO: add the posibility to emoji-react to the contributions.
 
 <div class="flex flex-col space-y-5 ml-0 pb-20">
 	{#if data.contributions}
-		{#each data.contributions as contrib}
+		{#each data.contributions.sort(compare_contribs) as contrib}
 			<ContributionSummary {contrib} />
 		{/each}
 	{/if}

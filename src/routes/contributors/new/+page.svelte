@@ -3,6 +3,7 @@
 	import { POST } from '$lib/api';
 	import type { components } from '$lib/cosearch';
 	import type { PageData } from '../$types';
+	import { invalidateAll } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -24,6 +25,7 @@
 			await POST('/contributors', {
 				body: new_contributor
 			});
+			await invalidateAll();
 			goto('/contributors');
 		} catch (error) {
 			creationError = error;
