@@ -61,10 +61,59 @@
                         </div> 
             </div> -->
 
+			<div class="flex space-x-1">
+				<button
+					type="button"
+					title="Copy link"
+					use:copy={`https://cosearch.bbchallenge.org/contribution/${contrib.id}`}
+					><i class="fa-solid fa-link text-sm"></i></button
+				>
+
+				<div>
+					{#if contrib.github_link}
+						<a href={contrib.github_link} target="_blank" title="Github">
+							<i class="fa-brands fa-github text-sm"></i>
+						</a>
+					{:else}
+						<i class="fa-brands fa-github text-sm text-gray-400"></i>
+					{/if}
+				</div>
+
+				<div>
+					{#if contrib.discord_chat_link}
+						<a href={contrib.discord_chat_link} target="_blank" title="Gitlab">
+							<i class="fa-brands fa-discord text-sm"></i>
+						</a>
+					{:else}
+						<i class="fa-brands fa-discord text-sm text-gray-400"></i>
+					{/if}
+				</div>
+
+				<div>
+					{#if contrib.forum_link}
+						<a href={contrib.forum_link} target="_blank" title="Forum link">
+							<i class="fa-brands fa-discourse text-sm"></i>
+						</a>
+					{:else}
+						<i class="fa-brands fa-discourse text-sm text-gray-400"></i>
+					{/if}
+				</div>
+
+				<div>
+					{#if contrib.wiki_link}
+						<a href={contrib.wiki_link} target="_blank" title="Wiki link">
+							<i class="fa-solid fa-book text-sm"></i>
+						</a>
+					{:else}
+						<i class="fa-solid fa-book text-sm text-gray-400"></i>
+					{/if}
+				</div>
+			</div>
+
 			<div class="text-sm flex space-x-2">
 				<div>
 					{#each contrib.tags as tag, index}
-						<a href="/tags/4">
+						<a href="/tags/{tag.id}">
 							<span
 								class=" text-white px-1 rounded-sm py-0.5 text-xs"
 								style="background-color: {tag.color}">{tag.display_name}</span
@@ -75,6 +124,7 @@
 					{/each}
 				</div>
 			</div>
+
 			<div class="mt-2 flex space-x-2">
 				<button
 					type="button"
@@ -87,7 +137,7 @@
 					type="button"
 					on:click={() => goto(`/contribution/${contrib.id}/reviews`)}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-					>Review ({contrib.reviews.length})</button
+					>Reviews ({contrib.reviews.length})</button
 				>
 
 				<!-- <button
@@ -95,13 +145,6 @@
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
 					title="Add reaction"><i class="fa-regular fa-face-smile"></i></button
 				> -->
-
-				<button
-					type="button"
-					title="Copy link"
-					use:copy={`https://cosearch.bbchallenge.org/contribution/${contrib.id}`}
-					><i class="fa-solid fa-link text-sm"></i></button
-				>
 			</div>
 		</div>
 	</div>

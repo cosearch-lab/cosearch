@@ -127,6 +127,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/contributions/{contribution_id}/contributors": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Contribution Contributors */
+        get: operations["read_contribution_contributors_contributions__contribution_id__contributors_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/tags": {
         parameters: {
             query?: never;
@@ -201,6 +218,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/sentry-debug": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Trigger Error */
+        get: operations["trigger_error_sentry_debug_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -249,7 +283,7 @@ export interface components {
             /** Title */
             title: string;
             /** Short Title */
-            short_title: string;
+            short_title?: string | null;
         };
         /** ContributionLinks */
         ContributionLinks: {
@@ -268,12 +302,24 @@ export interface components {
             /** Title */
             title: string;
             /** Short Title */
-            short_title: string;
+            short_title?: string | null;
             /**
              * Date
              * Format: date-time
              */
             date: string;
+            /** Discord Chat Link */
+            discord_chat_link?: string | null;
+            /** Github Link */
+            github_link?: string | null;
+            /** Forum Link */
+            forum_link?: string | null;
+            /** Wiki Link */
+            wiki_link?: string | null;
+            /** Archived At */
+            archived_at?: string | null;
+            /** Archive Reason */
+            archive_reason?: string | null;
             /**
              * Contributors
              * @default []
@@ -664,12 +710,24 @@ export interface components {
             /** Title */
             title: string;
             /** Short Title */
-            short_title: string;
+            short_title?: string | null;
             /**
              * Date
              * Format: date-time
              */
             date: string;
+            /** Discord Chat Link */
+            discord_chat_link?: string | null;
+            /** Github Link */
+            github_link?: string | null;
+            /** Forum Link */
+            forum_link?: string | null;
+            /** Wiki Link */
+            wiki_link?: string | null;
+            /** Archived At */
+            archived_at?: string | null;
+            /** Archive Reason */
+            archive_reason?: string | null;
             /**
              * Contributors
              * @default []
@@ -1064,6 +1122,37 @@ export interface operations {
             };
         };
     };
+    read_contribution_contributors_contributions__contribution_id__contributors_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contribution_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContributorShort"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     read_tags_tags_get: {
         parameters: {
             query?: {
@@ -1384,6 +1473,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    trigger_error_sentry_debug_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
         };

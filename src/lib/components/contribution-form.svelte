@@ -341,7 +341,7 @@
 			</div>
 
 			<div class="sm:col-span-4 mb-5">
-				<h2 class="text-base font-semibold leading-7 text-gray-900">Custom featured links</h2>
+				<h2 class="text-base font-semibold leading-7 text-gray-900">Other featured links</h2>
 				{#if contrib.links.length > 0}
 					<table>
 						<thead>

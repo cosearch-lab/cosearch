@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { prettyPrintDate } from '$lib';
+	import { copy } from 'svelte-copy';
 	import { goto } from '$app/navigation';
 
 	let path;
@@ -75,6 +76,56 @@
 				</div>
 			</div>
 		{/if}
+
+		<div class="flex space-x-1">
+			<button
+				type="button"
+				title="Copy link"
+				use:copy={`https://cosearch.bbchallenge.org/contribution/${data.contribution.id}`}
+				><i class="fa-solid fa-link text-sm"></i></button
+			>
+
+			<div>
+				{#if data.contribution.github_link}
+					<a href={data.contribution.github_link} target="_blank" title="Github">
+						<i class="fa-brands fa-github text-sm"></i>
+					</a>
+				{:else}
+					<i class="fa-brands fa-github text-sm text-gray-400"></i>
+				{/if}
+			</div>
+
+			<div>
+				{#if data.contribution.discord_chat_link}
+					<a href={data.contribution.discord_chat_link} target="_blank" title="Chat about it">
+						<i class="fa-brands fa-discord text-sm"></i>
+					</a>
+				{:else}
+					<i class="fa-brands fa-discord text-sm text-gray-400"></i>
+				{/if}
+			</div>
+
+			<div>
+				{#if data.contribution.forum_link}
+					<a href={data.contribution.forum_link} target="_blank" title="Forum link">
+						<i class="fa-brands fa-discourse text-sm"></i>
+					</a>
+				{:else}
+					<i class="fa-brands fa-discourse text-sm text-gray-400"></i>
+				{/if}
+			</div>
+
+			<div>
+				{#if data.contribution.wiki_link}
+					<a href={data.contribution.wiki_link} target="_blank" title="Wiki link">
+						<i class="fa-solid fa-book text-sm"></i>
+					</a>
+				{:else}
+					<i class="fa-solid fa-book text-sm text-gray-400"></i>
+				{/if}
+			</div>
+		</div>
+
 		{#if data.contribution.tags.length > 0}
 			<div class="text-sm flex space-x-2">
 				<div>
