@@ -63,10 +63,6 @@
 	</ol>
 </nav>
 
-<!-- TODO: this form's DOM needs to be cleaned, using flex everywhere instead of grid.
-    TODO: fix inputs name attributes and labels.
-	TODO: make labels inline-block instead of block
--->
 <form class="sm:w-4/5">
 	<div class="space-y-5">
 		<div class="border-b border-gray-900/10 pb-10">

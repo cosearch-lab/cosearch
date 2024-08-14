@@ -1,9 +1,20 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	export let data;
 </script>
 
 <!-- TODO: custom open graph description per contribution -->
 {#if data.contribution}
+	<div>
+		<button
+			type="button"
+			class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+			on:click={() => goto(`/contribution/${data.contribution.id}/edit`)}
+		>
+			<i class="fa-solid fa-pen mr-1"></i>
+			Edit
+		</button>
+	</div>
 	{#if data.contribution.links.length > 0}
 		<div class="text-lg font-bold">Featured Links</div>
 		<table class="lg:w-1/2 md:w-4/5 w-full text-xs border-collapse border border-slate-400">

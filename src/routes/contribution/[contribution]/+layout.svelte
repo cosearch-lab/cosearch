@@ -144,20 +144,9 @@
 
 	{#if path != `/contribution/${contrib_id}/edit`}
 		<div>
-			<button
-				type="button"
-				class="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-				on:click={() => goto(`/contribution/${contrib_id}/edit`)}
-			>
-				<i class="fa-solid fa-pen mr-1"></i>
-				Edit
-			</button>
-		</div>
-
-		<div>
-			<div class="sm:hidden">
+			<!-- <div class="sm:hidden">
 				<label for="tabs" class="sr-only">Select a tab</label>
-				<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+				
 				<select
 					id="tabs"
 					name="tabs"
@@ -166,8 +155,8 @@
 					<option selected>Details</option>
 					<option>Reviews</option>
 				</select>
-			</div>
-			<div class="hidden sm:block">
+			</div> -->
+			<div>
 				<div class="border-b border-gray-200">
 					<nav class="-mb-px flex space-x-8" aria-label="Tabs">
 						<!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700" -->
@@ -183,14 +172,14 @@
 						<a
 							href={`/contribution/${contrib_id}/reviews`}
 							class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium"
-							class:active={path === `/contribution/${contrib_id}/reviews`}
-							class:not-active={!(path === `/contribution/${contrib_id}/reviews`)}
+							class:active={path.includes('reviews')}
+							class:not-active={!path.includes('reviews')}
 						>
 							Reviews
 							<span
 								class="ml-2 rounded-full px-2.5 py-0.5 text-xs font-medium"
-								class:active={path === `/contribution/${contrib_id}/reviews`}
-								class:not-active={!(path === `/contribution/${contrib_id}/reviews`)}
+								class:active={path.includes('reviews')}
+								class:not-active={!path.includes('reviews')}
 								>{data.contribution.reviews.length}</span
 							>
 						</a>
