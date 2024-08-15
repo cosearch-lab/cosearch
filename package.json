@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-node": "^5.2.2",
 		"dayjs": "^1.11.12",
 		"openapi-fetch": "^0.10.2",
 		"svelte-awesome-color-picker": "^3.1.2",
