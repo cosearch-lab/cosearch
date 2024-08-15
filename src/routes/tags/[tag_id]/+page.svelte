@@ -1,9 +1,6 @@
 <script lang="ts">
-	import { mockContribs } from '$lib/index';
-	import ContributionSummary from '$lib/components/contribution-summary.svelte';
-
 	import { PUT } from '$lib/api';
-	import { goto } from '$app/navigation';
+	import ContributionSummary from '$lib/components/contribution-summary.svelte';
 	import ColorPicker from 'svelte-awesome-color-picker';
 
 	export let data;
@@ -46,7 +43,9 @@
 		<ol role="list" class="flex items-center space-x-0">
 			<li>
 				<div>
-					<a href="/tags" class="text-gray-400 hover:text-gray-500"> Tags (10) </a>
+					<a href="/tags" class="text-gray-400 hover:text-gray-500">
+						Tags {#if data.tags}({data.tags.length}){/if}
+					</a>
 				</div>
 			</li>
 			<li>
@@ -132,7 +131,17 @@
 			</div>
 		</form>{/if}
 
-	<div class="text-lg font-bold">Tagged Contributions (3)</div>
+	<div class="text-lg font-bold">Tagged Contributions ({data.tag.contributions.length})</div>
 
-	<div class="flex flex-col space-y-5 ml-0 pb-20"></div>
+	<div class="flex flex-col space-y-5 ml-0 pb-20">
+		{#if data.tag}
+			{#if data.tag.contributions.length > 0}
+				{#each data.tag.contributions as contrib}
+					<ContributionSummary {contrib} />
+				{/each}
+			{:else}
+				<p class="text-xs">This tag hasn't been used yet.</p>
+			{/if}
+		{/if}
+	</div>
 {/if}

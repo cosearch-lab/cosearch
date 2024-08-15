@@ -4,7 +4,6 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import ContributionSummary from '$lib/components/contribution-summary.svelte';
-	import { mockContribs } from '$lib/index';
 	import { pretty_print_contributor } from '$lib';
 
 	export let data;
@@ -12,7 +11,8 @@
 	let path;
 	$: path = $page.url.pathname;
 
-	let contributor = $page.params.contributor;
+	let contributor;
+	$: contributor = $page.params.contributor;
 </script>
 
 <nav class="flex" aria-label="Breadcrumb">

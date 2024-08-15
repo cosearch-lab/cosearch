@@ -23,7 +23,9 @@
 					<tr>
 						<td class="border border-slate-300 p-1">Github</td>
 						<td class="border border-slate-300 p-1 max-w-[300px] truncate">
-							<a href={data.contribution.github_link} class="l">{data.contribution.github_link}</a>
+							<a href={data.contribution.github_link} class="l" target="_blank"
+								>{data.contribution.github_link}</a
+							>
 						</td>
 					</tr>
 				{/if}
@@ -31,7 +33,7 @@
 					<tr>
 						<td class="border border-slate-300 p-1">Chat about it</td>
 						<td class="border border-slate-300 p-1 max-w-[300px] truncate">
-							<a href={data.contribution.discord_chat_link} class="l"
+							<a href={data.contribution.discord_chat_link} class="l" target="_blank"
 								>{data.contribution.discord_chat_link}</a
 							>
 						</td>
@@ -41,7 +43,9 @@
 					<tr>
 						<td class="border border-slate-300 p-1">Forum Link</td>
 						<td class="border border-slate-300 p-1 max-w-[300px] truncate">
-							<a href={data.contribution.forum_link} class="l">{data.contribution.forum_link}</a>
+							<a href={data.contribution.forum_link} class="l" target="_blank"
+								>{data.contribution.forum_link}</a
+							>
 						</td>
 					</tr>
 				{/if}
@@ -49,7 +53,9 @@
 					<tr>
 						<td class="border border-slate-300 p-1">Wiki Link</td>
 						<td class="border border-slate-300 p-1 max-w-[300px] truncate">
-							<a href={data.contribution.wiki_link} class="l">{data.contribution.wiki_link}</a>
+							<a href={data.contribution.wiki_link} class="l" target="_blank"
+								>{data.contribution.wiki_link}</a
+							>
 						</td>
 					</tr>
 				{/if}
@@ -57,7 +63,7 @@
 					<tr>
 						<td class="border border-slate-300 p-1">{link.description}</td>
 						<td class="border border-slate-300 p-1 max-w-[300px] truncate">
-							<a href={link.url} class="l">{link.url}</a>
+							<a href={link.url} class="l" target="_blank">{link.url}</a>
 						</td>
 					</tr>
 				{/each}

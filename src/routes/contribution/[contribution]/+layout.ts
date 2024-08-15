@@ -1,3 +1,4 @@
+import { getReproductions } from '$lib';
 import { GET } from '$lib/api';
 
 export async function load({ params }) {
@@ -19,6 +20,7 @@ export async function load({ params }) {
         contributions: contributions.data,
         contribution: contribution.data,
         contributors: contributors.data,
+        reproductions: await getReproductions(contribution.data),
         tags_per_id: tags_per_id,
         tags: tags.data
     };

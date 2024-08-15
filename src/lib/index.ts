@@ -1,14 +1,6 @@
 // place files you want to import through the `$lib` alias in this folder.
-import type { Tag, Contribution } from './contribution';
-import { tags, mockContribs } from './contribution';
-export type { Tag, Contribution }
-export { tags, mockContribs }
 
-import type { Contributor } from "./contributor"
-import { mockContributors } from "./contributor"
-export type { Contributor }
-export { mockContributors }
-
+import { GET } from '$lib/api';
 import type { components } from '$lib/cosearch';
 
 export function prettyPrintDate(date: string) {
@@ -23,4 +15,34 @@ export function prettyPrintDate(date: string) {
 export function pretty_print_contributor(contributor: components['schemas']['ContributorShort']) {
     if (!contributor.display_name) return `${contributor.local_handle}`;
     return `${contributor.display_name} (${contributor.local_handle})`;
+}
+
+export async function getReproductions(
+    contrib: components['schemas']['ContributionShort'] | undefined
+): Promise<components['schemas']['ContributionShort'][]> {
+
+    if (!contrib) return [];
+
+    let to_return: components['schemas']['ContributionShort'][] = [];
+    try {
+        const children_req = await GET('/contributions/{contribution_id}/children', {
+            params: { path: { contribution_id: contrib.id } }
+        });
+
+        const children = children_req.data;
+        if (children) {
+            for (const child of children) {
+                for (const tag of child.tags) {
+                    // 1 is the ID of the "result reproduction" tag
+                    if (tag.id === 1) {
+                        to_return.push(child);
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+    return to_return;
 }

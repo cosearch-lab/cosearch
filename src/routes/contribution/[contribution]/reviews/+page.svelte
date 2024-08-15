@@ -27,7 +27,7 @@
 				<th class="border border-slate-300 p-1">Notes</th>
 			</thead>
 			<tbody>
-				{#each data.reviews as review}
+				{#each data.contribution.reviews as review}
 					{#if review}
 						<tr>
 							<td class="border border-slate-300 p-1">

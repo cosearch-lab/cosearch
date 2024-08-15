@@ -5,6 +5,8 @@
 
 	import ColorPicker from 'svelte-awesome-color-picker';
 
+	export let data;
+
 	let new_tag: components['schemas']['TagCreate'] = {
 		display_name: '',
 		color: ''
@@ -38,7 +40,9 @@
 	<ol role="list" class="flex items-center space-x-0">
 		<li>
 			<div>
-				<a href="/tags" class="text-gray-400 hover:text-gray-500"> Tags (10) </a>
+				<a href="/tags" class="text-gray-400 hover:text-gray-500">
+					Tags {#if data.tags}({data.tags.length}){/if}
+				</a>
 			</div>
 		</li>
 		<li>
@@ -110,7 +114,7 @@
 			type="button"
 			class="text-sm font-semibold leading-6 text-gray-900"
 			on:click={() => {
-				goto('/contributors');
+				goto('/tags');
 			}}>Cancel</button
 		>
 		<button

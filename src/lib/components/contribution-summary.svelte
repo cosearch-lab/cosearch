@@ -2,10 +2,14 @@
 	import type { components } from '$lib/cosearch';
 	import { copy } from 'svelte-copy';
 	import { goto } from '$app/navigation';
+	import { GET } from '$lib/api';
 	export let contrib: components['schemas']['ContributionShort'];
 	export let review = false;
 
 	import { prettyPrintDate } from '$lib';
+
+	import { getReproductions } from '$lib';
+	import { redirect } from '@sveltejs/kit';
 </script>
 
 <div class="flex space-x-7 items-center">
@@ -29,7 +33,7 @@
 				{/each}
 			</div>
 			{#if contrib.dependencies && contrib.dependencies.length > 0}
-				<div class="text-sm flex space-x-1">
+				<div class="text-sm flex space-x-1 -mb-1.5">
 					<span>Dependencies:</span>
 					<div class="flex">
 						{#each contrib.dependencies as dependency, index}
@@ -126,25 +130,23 @@
 			</div>
 
 			<div class="mt-2 flex space-x-2">
-				<button
-					type="button"
-					on:click={() => goto(`/contribution/${contrib.id}`)}
+				<a
+					href={`/contribution/${contrib.id}`}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-					>View</button
+					>View</a
 				>
 
-				<button
-					type="button"
-					on:click={() => goto(`/contribution/${contrib.id}/reviews`)}
+				<a
+					href={`/contribution/${contrib.id}/reproductions`}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-					>Reviews ({contrib.reviews.length})</button
-				>
+					>Reproductions ({#await getReproductions(contrib)}0{:then reproductions}{reproductions.length}{/await})
+				</a>
 
-				<!-- <button
-					type="button"
+				<a
+					href={`/contribution/${contrib.id}/reviews`}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-					title="Add reaction"><i class="fa-regular fa-face-smile"></i></button
-				> -->
+					>Reviews ({contrib.reviews.length})</a
+				>
 			</div>
 		</div>
 	</div>

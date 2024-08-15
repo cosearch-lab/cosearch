@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { mockContributors, pretty_print_contributor } from '$lib/index';
 	import { goto } from '$app/navigation';
 	import ContributorLink from '$lib/components/contributor-link.svelte';
 	import type { components } from '$lib/cosearch';

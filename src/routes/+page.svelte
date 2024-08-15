@@ -1,7 +1,6 @@
 <script lang="ts">
-	import type { Tag, Contribution } from '$lib/index';
 	import ContributionSummary from '$lib/components/contribution-summary.svelte';
-	import { mockContribs, tags } from '$lib/index';
+
 	import { goto } from '$app/navigation';
 	export let data;
 

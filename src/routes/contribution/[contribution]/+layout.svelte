@@ -6,8 +6,8 @@
 
 	let path;
 	$: path = $page.url.pathname;
-
-	let contrib_id = $page.params.contribution;
+	let contrib_id;
+	$: contrib_id = $page.params.contribution;
 
 	export let data;
 </script>
@@ -61,7 +61,7 @@
 		</div>
 
 		{#if data.contribution.dependencies.length > 0}
-			<div class="text-sm flex space-x-1">
+			<div class="text-sm flex space-x-1 -mb-1.5">
 				<span>Dependencies:</span>
 				<div class="flex">
 					{#each data.contribution.dependencies as dependency, index}
@@ -168,6 +168,19 @@
 							aria-current="page"
 						>
 							Details
+						</a>
+						<a
+							href={`/contribution/${contrib_id}/reproductions`}
+							class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium"
+							class:active={path.includes('reproductions')}
+							class:not-active={!path.includes('reproductions')}
+						>
+							Reproductions
+							<span
+								class="ml-2 rounded-full px-2.5 py-0.5 text-xs font-medium"
+								class:active={path.includes('reproductions')}
+								class:not-active={!path.includes('reproductions')}>{data.reproductions.length}</span
+							>
 						</a>
 						<a
 							href={`/contribution/${contrib_id}/reviews`}

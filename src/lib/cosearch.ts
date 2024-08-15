@@ -431,7 +431,7 @@ export interface components {
              * Reviews
              * @default []
              */
-            reviews: components["schemas"]["ReviewShort"][];
+            reviews: components["schemas"]["ReviewPublic"][];
             /**
              * Dependencies
              * @default []
@@ -578,10 +578,10 @@ export interface components {
         };
         /** ReviewCreate */
         ReviewCreate: {
-            /** Link */
-            link: string;
             /** Notes */
-            notes: string;
+            notes?: string | null;
+            /** Link */
+            link?: string | null;
             /** Contribution Id */
             contribution_id: string;
             /** Reviewers */
@@ -589,14 +589,10 @@ export interface components {
         };
         /** ReviewPublic */
         ReviewPublic: {
-            /** Link */
-            link: string;
             /** Notes */
-            notes: string;
+            notes?: string | null;
             /** Id */
             id: number;
-            /** Contribution Id */
-            contribution_id: string;
             /**
              * Created At
              * Format: date-time
@@ -607,6 +603,10 @@ export interface components {
              * Format: date-time
              */
             updated_at: string;
+            /** Link */
+            link?: string | null;
+            /** Contribution Id */
+            contribution_id: string;
             /**
              * Reviewers
              * @default []
@@ -620,27 +620,14 @@ export interface components {
         };
         /** ReviewUpdate */
         ReviewUpdate: {
-            /** Link */
-            link: string;
             /** Notes */
-            notes: string;
+            notes?: string | null;
+            /** Link */
+            link?: string | null;
             /** Contribution Id */
             contribution_id: string;
             /** Reviewers */
             reviewers: number[];
-        };
-        /** Tag */
-        Tag: {
-            /** Display Name */
-            display_name: string;
-            /** Color */
-            color: string;
-            /** Id */
-            id?: number | null;
-            /** Created At */
-            created_at?: string | null;
-            /** Updated At */
-            updated_at?: string | null;
         };
         /** TagCreate */
         TagCreate: {
@@ -697,57 +684,7 @@ export interface components {
              * Contributions
              * @default []
              */
-            contributions: components["schemas"]["TaggedContributionShort"][];
-        };
-        /**
-         * TaggedContributionShort
-         * @description Used to display contribution for a specific tag.
-         *     Type of attribute `tags` is Tag instead of TagPublic to avoid infinite recursion.
-         */
-        TaggedContributionShort: {
-            /** Id */
-            id: string;
-            /** Title */
-            title: string;
-            /** Short Title */
-            short_title?: string | null;
-            /**
-             * Date
-             * Format: date-time
-             */
-            date: string;
-            /** Discord Chat Link */
-            discord_chat_link?: string | null;
-            /** Github Link */
-            github_link?: string | null;
-            /** Forum Link */
-            forum_link?: string | null;
-            /** Wiki Link */
-            wiki_link?: string | null;
-            /** Archived At */
-            archived_at?: string | null;
-            /** Archive Reason */
-            archive_reason?: string | null;
-            /**
-             * Contributors
-             * @default []
-             */
-            contributors: components["schemas"]["ContributorShort"][];
-            /**
-             * Tags
-             * @default []
-             */
-            tags: components["schemas"]["Tag"][];
-            /**
-             * Reviews
-             * @default []
-             */
-            reviews: components["schemas"]["ReviewShort"][];
-            /**
-             * Dependencies
-             * @default []
-             */
-            dependencies: components["schemas"]["ContributionDependency"][];
+            contributions: components["schemas"]["ContributionShort"][];
         };
         /** ValidationError */
         ValidationError: {
