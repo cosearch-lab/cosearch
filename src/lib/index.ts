@@ -12,7 +12,8 @@ export function prettyPrintDate(date: string) {
     return `${d.toLocaleString('en', { month: 'short' })} ${d.getDate()}`;
 }
 
-export function pretty_print_contributor(contributor: components['schemas']['ContributorShort']) {
+export function pretty_print_contributor(contributor: components['schemas']['ContributorShort'] | undefined) {
+    if (!contributor) return '';
     if (!contributor.display_name) return `${contributor.local_handle}`;
     return `${contributor.display_name} (${contributor.local_handle})`;
 }
