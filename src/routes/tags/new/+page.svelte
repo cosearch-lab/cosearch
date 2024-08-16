@@ -26,7 +26,7 @@
 			await POST('/tags', {
 				body: new_tag
 			});
-			invalidateAll();
+			await invalidateAll();
 			goto('/tags');
 		} catch (error) {
 			creationError = error;
