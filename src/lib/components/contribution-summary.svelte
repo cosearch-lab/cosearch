@@ -4,6 +4,7 @@
 	export let contrib: components['schemas']['ContributionShort'];
 	export let review = false;
 
+	import { getChildren } from '$lib';
 	import { prettyPrintDate } from '$lib';
 </script>
 
