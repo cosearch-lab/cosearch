@@ -31,7 +31,7 @@
 
 	function pretty_print_contribution(contribution: components['schemas']['ContributionShort']) {
 		if (!contribution.short_title) return `${contribution.title} (ID: ${contribution.id})`;
-		return `${contribution.short_title} (ID: ${contribution.id})`;
+		return `${contribution.title} - ${contribution.short_title} (ID: ${contribution.id})`;
 	}
 
 	if (edit) {
