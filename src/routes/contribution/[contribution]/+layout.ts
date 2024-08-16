@@ -7,6 +7,10 @@ export async function load({ params }) {
 
     const contribution = await GET('/contributions/{contribution_id}', { params: { path: { contribution_id: params.contribution } } });
 
+    const children = await GET('/contributions/{contribution_id}/children', {
+        params: { path: { contribution_id: params.contribution } }
+    });
+
     const contributors = await GET('/contributors');
     const tags = await GET('/tags');
     let tags_per_id = {};
@@ -20,7 +24,8 @@ export async function load({ params }) {
         contributions: contributions.data,
         contribution: contribution.data,
         contributors: contributors.data,
-        reproductions: await getReproductions(contribution.data),
+        children: children.data,
+        // reproductions: await getReproductions(contribution.data),
         tags_per_id: tags_per_id,
         tags: tags.data
     };

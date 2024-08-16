@@ -1,15 +1,10 @@
 <script lang="ts">
 	import type { components } from '$lib/cosearch';
 	import { copy } from 'svelte-copy';
-	import { goto } from '$app/navigation';
-	import { GET } from '$lib/api';
 	export let contrib: components['schemas']['ContributionShort'];
 	export let review = false;
 
 	import { prettyPrintDate } from '$lib';
-
-	import { getReproductions } from '$lib';
-	import { redirect } from '@sveltejs/kit';
 </script>
 
 <div class="flex space-x-7 items-center">
@@ -137,16 +132,16 @@
 				>
 
 				<a
-					href={`/contribution/${contrib.id}/reproductions`}
-					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-					>Reproductions ({#await getReproductions(contrib)}0{:then reproductions}{reproductions.length}{/await})
-				</a>
-
-				<a
 					href={`/contribution/${contrib.id}/reviews`}
 					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
 					>Reviews ({contrib.reviews.length})</a
 				>
+
+				<a
+					href={`/contribution/${contrib.id}/children`}
+					class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+					>Children ({#await getChildren(contrib)}0{:then children}{children.length}{/await})
+				</a>
 			</div>
 		</div>
 	</div>

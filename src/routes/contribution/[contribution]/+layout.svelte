@@ -169,19 +169,7 @@
 						>
 							Details
 						</a>
-						<a
-							href={`/contribution/${contrib_id}/reproductions`}
-							class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium"
-							class:active={path.includes('reproductions')}
-							class:not-active={!path.includes('reproductions')}
-						>
-							Reproductions
-							<span
-								class="ml-2 rounded-full px-2.5 py-0.5 text-xs font-medium"
-								class:active={path.includes('reproductions')}
-								class:not-active={!path.includes('reproductions')}>{data.reproductions.length}</span
-							>
-						</a>
+
 						<a
 							href={`/contribution/${contrib_id}/reviews`}
 							class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium"
@@ -195,6 +183,21 @@
 								class:not-active={!path.includes('reviews')}
 								>{data.contribution.reviews.length}</span
 							>
+						</a>
+						<a
+							href={`/contribution/${contrib_id}/children`}
+							class="flex whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium"
+							class:active={path.includes('children')}
+							class:not-active={!path.includes('children')}
+						>
+							Children
+							{#if data.children}
+								<span
+									class="ml-2 rounded-full px-2.5 py-0.5 text-xs font-medium"
+									class:active={path.includes('children')}
+									class:not-active={!path.includes('children')}>{data.children.length}</span
+								>
+							{/if}
 						</a>
 					</nav>
 				</div>

@@ -47,3 +47,24 @@ export async function getReproductions(
 
     return to_return;
 }
+
+export async function getChildren(
+    contrib: components['schemas']['ContributionShort'] | undefined
+): Promise<components['schemas']['ContributionShort'][]> {
+
+    if (!contrib) return [];
+
+
+    try {
+        const children_req = await GET('/contributions/{contribution_id}/children', {
+            params: { path: { contribution_id: contrib.id } }
+        });
+
+        const children = children_req.data;
+        return children;
+    } catch (error) {
+        console.error(error);
+    }
+
+    return [];
+}
