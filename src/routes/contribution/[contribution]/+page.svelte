@@ -77,9 +77,9 @@
 		</p>
 	{/if}
 
-	{#if data.contribution.links.length === 0 && data.contribution.description.trim().length === 0}
+	<!-- {#if data.contribution.links.length === 0 && data.contribution.description.trim().length === 0}
 		<p class="text-xs">No details given.</p>
-	{/if}
+	{/if} -->
 
 	<!-- <div class="text-lg font-bold">Attachments</div> -->
 {/if}
