@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { POST } from '$lib/api';
 	import type { components } from '$lib/cosearch';
 
@@ -26,6 +26,7 @@
 			await POST('/tags', {
 				body: new_tag
 			});
+			invalidateAll();
 			goto('/tags');
 		} catch (error) {
 			creationError = error;
