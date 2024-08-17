@@ -41,10 +41,14 @@
 								{/each}
 							</td>
 							<td class="border border-slate-300 p-1">
-								<a href={review.link} class="l">{review.link}</a>
+								{#if review.link}
+									<a href={review.link} class="l">{review.link}</a>
+								{/if}
 							</td>
-							<td class="border border-slate-300 p-1 truncate max-w-[200px]" title={review.notes}
-								>{review.notes}</td
+							<td class="border border-slate-300 p-1 truncate max-w-[200px]" title={review.notes}>
+								{#if review.notes}
+									{review.notes}
+								{/if}</td
 							>
 							<td class="border border-slate-300 p-1">
 								<button
