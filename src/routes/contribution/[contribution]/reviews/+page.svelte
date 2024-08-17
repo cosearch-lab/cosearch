@@ -34,9 +34,7 @@
 								{#each review.reviewers as reviewer}
 									<a href="/{reviewer.local_handle}" class="l"
 										>{reviewer.display_name || reviewer.local_handle}</a
-									>
-									{#if reviewer !== review.reviewers[review.reviewers.length - 1]}
-										<span>, </span>
+									>{#if reviewer !== review.reviewers[review.reviewers.length - 1]}<span>, </span>
 									{/if}
 								{/each}
 							</td>
