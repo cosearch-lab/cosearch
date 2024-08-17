@@ -1,14 +1,9 @@
 <script lang="ts">
 	import ContributionSummary from '$lib/components/contribution-summary.svelte';
+	import { compare_contribs } from '$lib';
 
 	import { goto } from '$app/navigation';
 	export let data;
-
-	function compare_contribs(a, b) {
-		if (a.date > b.date) return -1;
-		if (a.date < b.date) return 1;
-		return 0;
-	}
 </script>
 
 <!--

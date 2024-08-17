@@ -3,6 +3,8 @@
 	import ContributionSummary from '$lib/components/contribution-summary.svelte';
 	import ColorPicker from 'svelte-awesome-color-picker';
 
+	import { compare_contribs } from '$lib';
+
 	export let data;
 
 	let edit_mode = false;
@@ -136,7 +138,7 @@
 	<div class="flex flex-col space-y-5 ml-0 pb-20">
 		{#if data.tag}
 			{#if data.tag.contributions.length > 0}
-				{#each data.tag.contributions as contrib}
+				{#each data.tag.contributions.sort(compare_contribs) as contrib}
 					<ContributionSummary {contrib} />
 				{/each}
 			{:else}

@@ -68,3 +68,9 @@ export async function getChildren(
 
     return [];
 }
+
+export function compare_contribs(a, b) {
+    if (a.date > b.date) return -1;
+    if (a.date < b.date) return 1;
+    return 0;
+}
