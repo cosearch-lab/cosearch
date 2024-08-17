@@ -20,7 +20,7 @@
 	<div>
 		<div>{contrib.title}</div>
 		<div>
-			<div class="text-sm flex space-x-1">
+			<div class="text-sm flex flex-wrap space-x-1">
 				<span>{prettyPrintDate(contrib.date)}</span> <span>&middot;</span>
 				{#each contrib.contributors as contributor, index}
 					<a href="/{contributor.local_handle}" class="l"
