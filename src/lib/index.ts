@@ -76,7 +76,7 @@ export function compare_contribs(a: components['schemas']['ContributionShort'], 
 }
 
 export function compare_tags(a: components['schemas']['TagPublic'], b: components['schemas']['TagPublic'],) {
-    if (a.id > b.id) return -1;
-    if (a.id < b.id) return 1;
+    if (a.id > b.id) return 1;
+    if (a.id < b.id) return -1;
     return 0;
 }
