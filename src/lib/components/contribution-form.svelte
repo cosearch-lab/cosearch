@@ -267,8 +267,8 @@
 					/>
 				</div>
 				<p class="mt-1 text-sm leading-6 text-gray-600">
-					Link to the discord channel or thread (or message to thread from) that is most relevant
-					for discussing this contribution.
+					Link to the discord channel or thread that is most relevant for discussing this
+					contribution.
 				</p>
 			</div>
 
