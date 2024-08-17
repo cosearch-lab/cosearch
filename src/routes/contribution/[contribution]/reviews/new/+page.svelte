@@ -59,7 +59,16 @@
 			<div class=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
 				<div class="sm:col-span-4">
 					<label for="handle" class="inline-block text-sm font-medium leading-6 text-gray-900"
-						>Reviewers*</label
+						>Reviewers* <a href="/contributors" target="_blank" title="Contributors"
+							><i class="fa-solid fa-arrow-up-right-from-square text-xs ml-0.5"></i></a
+						>
+						<button
+							type="button"
+							title="reload"
+							on:click={async () => {
+								await invalidateAll();
+							}}><i class="fa-solid fa-arrows-rotate text-xs ml-0.5"></i></button
+						></label
 					>
 					<div class="mt-2">
 						{#if data.contributors}
