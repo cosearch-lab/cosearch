@@ -11,5 +11,5 @@ span.pre {
 }
 
 a.truncate-dependencies {
-    @apply max-w-[100px] truncate inline-block;
+    @apply max-w-[200px] truncate inline-block;
 }
