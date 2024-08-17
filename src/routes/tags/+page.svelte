@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import ContributorLink from '$lib/components/contributor-link.svelte';
-
+	import { compare_tags } from '$lib';
 	export let data;
 </script>
 
@@ -46,7 +45,7 @@
 
 {#if data.tags}
 	<div class="flex flex-col space-y-2 items-start">
-		{#each data.tags as tag}
+		{#each data.tags.sort(compare_tags) as tag}
 			<a href="/tags/{tag.id}">
 				<div>
 					<span

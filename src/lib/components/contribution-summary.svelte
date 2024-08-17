@@ -4,6 +4,7 @@
 	export let contrib: components['schemas']['ContributionShort'];
 	export let review = false;
 
+	import { compare_tags } from '$lib';
 	import { getChildren } from '$lib';
 	import { prettyPrintDate } from '$lib';
 </script>
@@ -112,7 +113,7 @@
 
 			<div class="text-sm flex space-x-2">
 				<div>
-					{#each contrib.tags as tag, index}
+					{#each contrib.tags.sort(compare_tags) as tag, index}
 						<a href="/tags/{tag.id}">
 							<span
 								class=" text-white px-1 rounded-sm py-0.5 text-xs"
