@@ -7,7 +7,7 @@
 	let internal;
 
 	const input = (x) => (internal = dayjs(x).format(format));
-	const output = (x) => (date = dayjs(x, format).toDate());
+	const output = (x) => (date = new Date(internal));
 
 	$: input(date);
 	$: output(internal);
