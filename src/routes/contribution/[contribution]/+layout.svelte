@@ -131,7 +131,7 @@
 				<div>
 					{#each data.contribution.tags as tag, index}
 						<a
-							href={`/tag/${tag.id}`}
+							href={`/tags/${tag.id}`}
 							class=" text-white px-1 rounded-sm py-0.5 text-xs"
 							style="background-color: {tag.color}">{tag.display_name}</a
 						>{#if index !== data.contribution.tags.length - 1}
