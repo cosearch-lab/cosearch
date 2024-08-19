@@ -130,9 +130,10 @@
 			<div class="text-sm flex space-x-2">
 				<div>
 					{#each data.contribution.tags as tag, index}
-						<span
+						<a
+							href={`/tag/${tag.id}`}
 							class=" text-white px-1 rounded-sm py-0.5 text-xs"
-							style="background-color: {tag.color}">{tag.display_name}</span
+							style="background-color: {tag.color}">{tag.display_name}</a
 						>{#if index !== data.contribution.tags.length - 1}
 							<span>&nbsp;</span>
 						{/if}
