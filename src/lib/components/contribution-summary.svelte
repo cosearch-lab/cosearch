@@ -72,7 +72,7 @@
 
 				<div>
 					{#if contrib.github_link}
-						<a href={contrib.github_link} target="_blank" title="Github">
+						<a href={contrib.github_link} target="_blank" title="GitHub">
 							<i class="fa-brands fa-github text-sm"></i>
 						</a>
 					{:else}
@@ -82,7 +82,7 @@
 
 				<div>
 					{#if contrib.discord_chat_link}
-						<a href={contrib.discord_chat_link} target="_blank" title="Gitlab">
+						<a href={contrib.discord_chat_link} target="_blank" title="Discord">
 							<i class="fa-brands fa-discord text-sm"></i>
 						</a>
 					{:else}
